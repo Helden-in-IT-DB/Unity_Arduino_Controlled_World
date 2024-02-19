@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Movement : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Movement : MonoBehaviour
     float verticalInput;
     Vector3 moveDirection;
     Rigidbody rb;
+    public TextMeshProUGUI spedometer;
     // Start is called before the first frame update
     private void Start()
     {
@@ -28,14 +30,15 @@ public class Movement : MonoBehaviour
         //calls the input for movement
         MyInput();
         
-        if(grounded)
+        if (grounded)
         {
             rb.drag = groundDrag;
-        } 
-        else 
-        {
+        }
+        else
+        { 
             rb.drag = 0;
         }
+        SetSpedometer();
     }
     private void FixedUpdate()
     {
@@ -50,5 +53,9 @@ public class Movement : MonoBehaviour
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+    }
+    void SetSpedometer()
+    {
+        spedometer.text = "speed: ";
     }
 }
