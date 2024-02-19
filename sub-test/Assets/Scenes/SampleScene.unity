@@ -630,6 +630,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 7
+  groundDrag: 5
+  playerheight: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 256
   orientation: {fileID: 1360038184}
 --- !u!1 &705507993
 GameObject:
@@ -737,7 +742,7 @@ GameObject:
   - component: {fileID: 741671607}
   - component: {fileID: 741671606}
   - component: {fileID: 741671605}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
