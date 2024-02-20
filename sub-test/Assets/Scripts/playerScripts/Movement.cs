@@ -11,6 +11,10 @@ public class Movement : MonoBehaviour
 {
     public TextMeshProUGUI stateTeller;
 
+    [Header("slope handling")]
+    public float maxSlopeAngle;
+    private RaycastHit slopehit;
+
     //speed and drag for movement
     [Header("Moverment")]
     private float moveSpeed;
@@ -148,9 +152,13 @@ public class Movement : MonoBehaviour
     private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        
+        //on slope
+        if(OnSlope())
+        {
+            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
+        }
         //on ground
-        if(grounded)
+        else if(grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
         //in air
@@ -175,5 +183,21 @@ public class Movement : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+    }
+    private bool OnSlope()
+    {
+        if(Physics.Raycast(transform.position, Vector3.down, out slopehit, playerheight * 0.5f + 0.4f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopehit.normal);
+            return angle < maxSlopeAngle && angle != 0;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    private Vector3 GetSlopeMoveDirection()
+    {
+        return Vector3.ProjectOnPlane(moveDirection, slopehit.normal).normalized;
     }
 }
