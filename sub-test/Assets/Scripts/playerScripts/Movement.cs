@@ -14,6 +14,7 @@ public class Movement : MonoBehaviour
     [Header("slope handling")]
     public float maxSlopeAngle;
     private RaycastHit slopehit;
+    private bool exitingSlope;
 
     //speed and drag for movement
     [Header("Moverment")]
@@ -37,7 +38,7 @@ public class Movement : MonoBehaviour
    [Header("Keybinds")]
     KeyCode jumpKey = KeyCode.Space; 
     KeyCode sprintKey = KeyCode.LeftShift;
-    KeyCode crouchKey = KeyCode.C;
+    KeyCode crouchKey = KeyCode.LeftAlt;
 
     //groundcheck
     [Header("GroundCheck")]
@@ -156,6 +157,11 @@ public class Movement : MonoBehaviour
         if(OnSlope())
         {
             rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
+
+            if(rb.velocity.y > 0)
+            {
+                rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+            }
         }
         //on ground
         else if(grounded)
@@ -164,25 +170,45 @@ public class Movement : MonoBehaviour
         //in air
         else if(!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+
+            //turns gravity off when on slope so you don't slide off
+            rb.useGravity = !OnSlope();
     }
     private void SpeedControl()
     {
-        Vector3 flatvel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        //speed limit
-        if (flatvel.magnitude >= moveSpeed)
+        if(OnSlope() && !exitingSlope)
         {
-            Vector3 limitedVel = flatvel.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+            //limits speed on slopes
+            if(rb.velocity.magnitude> moveSpeed)
+            {
+                rb.velocity = rb.velocity.normalized * moveSpeed;
+            }
         }
-    }   
+        //kimits spped on ground
+        else
+        {
+            Vector3 flatvel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            //speed limit
+            if (flatvel.magnitude >= moveSpeed)
+            {
+                Vector3 limitedVel = flatvel.normalized * moveSpeed;
+                rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+            }
+        }
+
+    }
     private void Jump()
     {
+        exitingSlope = true;
+
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
     private void ResetJump()
     {
         readyToJump = true;
+
+        exitingSlope = false;
     }
     private bool OnSlope()
     {
