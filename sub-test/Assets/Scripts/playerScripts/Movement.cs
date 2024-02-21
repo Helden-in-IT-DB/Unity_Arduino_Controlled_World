@@ -38,7 +38,7 @@ public class Movement : MonoBehaviour
    [Header("Keybinds")]
     KeyCode jumpKey = KeyCode.Space; 
     KeyCode sprintKey = KeyCode.LeftShift;
-    KeyCode crouchKey = KeyCode.LeftAlt;
+    KeyCode crouchKey = KeyCode.LeftControl;
 
     //groundcheck
     [Header("GroundCheck")]
@@ -60,6 +60,7 @@ public class Movement : MonoBehaviour
         walking,
         sprinting,
         crouching,
+        slide,
         air
     }
     // Start is called before the first frame update
@@ -156,9 +157,9 @@ public class Movement : MonoBehaviour
         //on slope
         if(OnSlope())
         {
-            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
+            rb.AddForce(GetSlopeMoveDirection(moveDirection) * moveSpeed * 20f, ForceMode.Force);
 
-            if(rb.velocity.y > 0)
+            if(rb.velocity.y > 0 && !exitingSlope)
             {
                 rb.AddForce(Vector3.down * 80f, ForceMode.Force);
             }
@@ -210,7 +211,7 @@ public class Movement : MonoBehaviour
 
         exitingSlope = false;
     }
-    private bool OnSlope()
+    public bool OnSlope()
     {
         if(Physics.Raycast(transform.position, Vector3.down, out slopehit, playerheight * 0.5f + 0.4f))
         {
@@ -222,8 +223,8 @@ public class Movement : MonoBehaviour
             return false;
         }
     }
-    private Vector3 GetSlopeMoveDirection()
+    public Vector3 GetSlopeMoveDirection(Vector3 direction)
     {
-        return Vector3.ProjectOnPlane(moveDirection, slopehit.normal).normalized;
+        return Vector3.ProjectOnPlane(direction, slopehit.normal).normalized;
     }
 }
