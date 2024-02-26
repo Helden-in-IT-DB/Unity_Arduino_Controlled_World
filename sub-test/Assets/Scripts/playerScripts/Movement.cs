@@ -6,10 +6,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor.Timeline;
 
 public class Movement : MonoBehaviour
 {
     public TextMeshProUGUI stateTeller;
+    public TextMeshProUGUI speedTeller;
 
     [Header("slope handling")]
     public float maxSlopeAngle;
@@ -21,6 +23,14 @@ public class Movement : MonoBehaviour
     private float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
+    public float slideSpeed;
+
+    private float desiredMoveSpeed;
+    private float lastDesiredMoveSpeed;
+
+    public float speedIncreaseMultiplier;
+    public float SlopeIncreaseMultiplier;
+
     public float groundDrag;
    
    //jump
@@ -60,9 +70,11 @@ public class Movement : MonoBehaviour
         walking,
         sprinting,
         crouching,
-        slide,
+        sliding,
         air
     }
+
+    public bool sliding;
     // Start is called before the first frame update
     private void Start()
     {
@@ -89,6 +101,7 @@ public class Movement : MonoBehaviour
             rb.drag = 0;
         }
         stateTeller.text = $"{state}";
+        speedTeller.text = $"{moveSpeed}";
     }
     private void FixedUpdate()
     {
@@ -126,31 +139,86 @@ public class Movement : MonoBehaviour
     }
     private void StateHandler()
     {
-       
+        //mode - sliding
+        if(sliding)
+        {
+            state = MovementState.sliding;
+
+            if (OnSlope() && rb.velocity.y < 0.1f)
+            {
+                desiredMoveSpeed = slideSpeed;
+            }
+            else 
+            {
+                desiredMoveSpeed = sprintSpeed;
+            }
+        }
         //sprint mode
-        if(grounded && Input.GetKey(sprintKey) && !Input.GetKey(crouchKey))
+        else if(grounded && Input.GetKey(sprintKey) && !Input.GetKey(crouchKey))
         {
             state = MovementState.sprinting;
-            moveSpeed = sprintSpeed;
+            desiredMoveSpeed = sprintSpeed;
         }
         //crouch mode
         else if(Input.GetKey(crouchKey))
         {
             state = MovementState.crouching;
-            moveSpeed = crouchSpeed;
+            desiredMoveSpeed = crouchSpeed;
         }
         //walk mode
         else if(grounded)
         {
             state = MovementState.walking;
-            moveSpeed = walkSpeed; 
+            desiredMoveSpeed = walkSpeed; 
         }
         //air mode
         else
         {
             state = MovementState.air;
         }
+
+        // check if the desiredMovespeed has changed drastically
+        if(Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4 && moveSpeed != 0)
+        {
+            StopAllCoroutines();
+            StartCoroutine(SmoothlyLerpMoveSpeed());
+        }
+        else
+        {
+            moveSpeed = desiredMoveSpeed;
+        }
+        lastDesiredMoveSpeed = desiredMoveSpeed;
     }
+
+    //lerp for momentum
+    private IEnumerator SmoothlyLerpMoveSpeed()
+    {
+        // smoothly lerps movementspeed to desired value
+        float time = 0;
+        float difference = Mathf.Abs(desiredMoveSpeed - moveSpeed);
+        float startValue = moveSpeed;
+
+        while (time < difference)
+        {
+            moveSpeed = Mathf.Lerp(startValue, desiredMoveSpeed, time / difference);
+
+            if (OnSlope())
+            {
+                float slopeAngle = Vector3.Angle(Vector3.up, slopehit.normal);
+                float SlopeAngleIncrease = 1 + (slopeAngle / 90f);
+
+                time += Time.deltaTime * speedIncreaseMultiplier * SlopeIncreaseMultiplier * SlopeAngleIncrease;
+            }
+            else 
+            {
+                time += Time.deltaTime * speedIncreaseMultiplier;
+            }
+            yield return null;
+        }
+
+        moveSpeed = desiredMoveSpeed;
+    }
+    // like for lerp reference : https://docs.unity3d.com/ScriptReference/Mathf.Lerp.html
     private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
@@ -185,7 +253,7 @@ public class Movement : MonoBehaviour
                 rb.velocity = rb.velocity.normalized * moveSpeed;
             }
         }
-        //kimits spped on ground
+        //limits speed on ground
         else
         {
             Vector3 flatvel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
@@ -216,7 +284,7 @@ public class Movement : MonoBehaviour
         if(Physics.Raycast(transform.position, Vector3.down, out slopehit, playerheight * 0.5f + 0.4f))
         {
             float angle = Vector3.Angle(Vector3.up, slopehit.normal);
-            return angle < maxSlopeAngle && angle != 0;
+            return angle <= maxSlopeAngle && angle != 0;
         }
         else
         {
