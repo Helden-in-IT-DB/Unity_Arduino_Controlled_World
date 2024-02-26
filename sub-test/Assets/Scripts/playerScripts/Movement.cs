@@ -10,6 +10,9 @@ using UnityEditor.Timeline;
 
 public class Movement : MonoBehaviour
 {
+    [Header("references")]
+    //climb script
+    public Climbing CmS;
     public TextMeshProUGUI stateTeller;
     public TextMeshProUGUI speedTeller;
 
@@ -19,11 +22,12 @@ public class Movement : MonoBehaviour
     private bool exitingSlope;
 
     //speed and drag for movement
-    [Header("Moverment")]
+    [Header("Moverment Spped")]
     private float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
     public float slideSpeed;
+    public float climbSpeed;
 
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
@@ -54,7 +58,7 @@ public class Movement : MonoBehaviour
     [Header("GroundCheck")]
     public float playerheight;
     public LayerMask whatIsGround;
-    bool grounded;
+    public bool grounded;
     
     //movement
     public Transform orientation;
@@ -71,10 +75,12 @@ public class Movement : MonoBehaviour
         sprinting,
         crouching,
         sliding,
+        climbing,
         air
     }
 
     public bool sliding;
+    public bool climbing;
     // Start is called before the first frame update
     private void Start()
     {
@@ -139,8 +145,15 @@ public class Movement : MonoBehaviour
     }
     private void StateHandler()
     {
+        //mode - climbing
+        if(climbing)
+        {
+            state = MovementState.climbing;
+            desiredMoveSpeed = climbSpeed;
+           
+        }
         //mode - sliding
-        if(sliding)
+        else if(sliding)
         {
             state = MovementState.sliding;
 
@@ -221,6 +234,10 @@ public class Movement : MonoBehaviour
     // like for lerp reference : https://docs.unity3d.com/ScriptReference/Mathf.Lerp.html
     private void MovePlayer()
     {
+        if (CmS.exitingWall)
+        {
+            return;
+        }
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         //on slope
         if(OnSlope())
