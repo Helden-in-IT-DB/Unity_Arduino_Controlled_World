@@ -245,7 +245,7 @@ public class Movement : MonoBehaviour
     }
     private void SpeedControl()
     {
-        if(OnSlope() && !exitingSlope)
+        if(OnSlope())
         {
             //limits speed on slopes
             if(rb.velocity.magnitude> moveSpeed)
