@@ -289,7 +289,7 @@ MonoBehaviour:
   sphereCastRadius: 0.25
   maxWallLookAngle: 40
   jumpKey: 32
-  grab: 324
+  grab: 308
 --- !u!1 &5077166427171642070
 GameObject:
   m_ObjectHideFlags: 0

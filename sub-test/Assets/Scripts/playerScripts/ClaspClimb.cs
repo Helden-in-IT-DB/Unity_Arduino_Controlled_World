@@ -37,7 +37,7 @@ public class ClaspClimb : MonoBehaviour
 
     [Header("keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
-    public KeyCode grab = KeyCode.Mouse1;
+    public KeyCode grab = KeyCode.LeftAlt;
 
     // Update is called once per frame
     void Update()
