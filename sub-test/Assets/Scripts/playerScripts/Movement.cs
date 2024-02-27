@@ -12,7 +12,7 @@ public class Movement : MonoBehaviour
 {
     [Header("references")]
     //climb script
-    public Climbing CmS;
+    public ClaspClimb CmS;
     public TextMeshProUGUI stateTeller;
     public TextMeshProUGUI speedTeller;
 
@@ -76,11 +76,13 @@ public class Movement : MonoBehaviour
         crouching,
         sliding,
         climbing,
+        clasping,
         air
     }
 
     public bool sliding;
     public bool climbing;
+    public bool clasping;
     // Start is called before the first frame update
     private void Start()
     {
@@ -145,8 +147,14 @@ public class Movement : MonoBehaviour
     }
     private void StateHandler()
     {
+        //mode - clasping
+        if(clasping)
+        {
+            state = MovementState.clasping;
+            desiredMoveSpeed = 0f;
+        }
         //mode - climbing
-        if(climbing)
+        else if(climbing)
         {
             state = MovementState.climbing;
             desiredMoveSpeed = climbSpeed;
@@ -234,10 +242,10 @@ public class Movement : MonoBehaviour
     // like for lerp reference : https://docs.unity3d.com/ScriptReference/Mathf.Lerp.html
     private void MovePlayer()
     {
-        if (CmS.exitingWall)
-        {
-            return;
-        }
+//        if (CmS.exitingWall)
+//        {
+//     //       return;
+//        }
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         //on slope
         if(OnSlope())
