@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 4157736620201942031}
   - component: {fileID: 6834727942914902005}
   - component: {fileID: 4021598926168314248}
-  - component: {fileID: 4163225482170586147}
+  - component: {fileID: 6276916223199190168}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f58e9fc3870bd4f8bedb7a29b2114e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CmS: {fileID: 4163225482170586147}
+  CmS: {fileID: 6276916223199190168}
   stateTeller: {fileID: 0}
   speedTeller: {fileID: 0}
   maxSlopeAngle: 46
@@ -242,6 +242,7 @@ MonoBehaviour:
   state: 0
   sliding: 0
   climbing: 0
+  clasping: 0
 --- !u!114 &4021598926168314248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,7 +261,7 @@ MonoBehaviour:
   SlideForce: 200
   slideYScale: 0.5
   slideKey: 99
---- !u!114 &4163225482170586147
+--- !u!114 &6276916223199190168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -269,28 +270,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 2288749641641856963}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 956c00fecfa869d4a9efedf2692e70d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 99fb148202cb0984cbc5f9c7ca0e707b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 2581290932410203960}
-  rb: {fileID: 4157736620201942031}
   pm: {fileID: 6834727942914902005}
-  whatIsWall:
+  rb: {fileID: 4157736620201942031}
+  whatIsGround:
     serializedVersion: 2
     m_Bits: 256
+  Meter: {fileID: 0}
   climbSpeed: 8
   maxClimbTime: 2
-  climbJumpUpForce: 14
-  climbJumpBackForce: 12
-  jumpKey: 32
-  climbJumps: 1
-  exitingWall: 0
-  exitingWallTime: 0.2
-  exitingWallTimer: 0
+  climbTimer: 0
+  claspTimerSlowDown: 3
+  claspSpeed: 0.0001
   detectionLength: 0.7
   sphereCastRadius: 0.25
   maxWallLookAngle: 40
-  minWallNormalAngleChange: 5
+  jumpKey: 32
+  grab: 324
 --- !u!1 &5077166427171642070
 GameObject:
   m_ObjectHideFlags: 0

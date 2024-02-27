@@ -151,7 +151,7 @@ public class Movement : MonoBehaviour
         if(clasping)
         {
             state = MovementState.clasping;
-            desiredMoveSpeed = 0f;
+            
         }
         //mode - climbing
         else if(climbing)

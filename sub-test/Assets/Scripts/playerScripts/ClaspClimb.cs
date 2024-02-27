@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ClaspClimb : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class ClaspClimb : MonoBehaviour
     public Movement pm;
     public Rigidbody rb;
     public LayerMask whatIsGround;
+    
+    [Header("UI")]
+    public Image Meter;
 
     [Header("climbing")]
     public float climbSpeed;
@@ -40,7 +44,7 @@ public class ClaspClimb : MonoBehaviour
     {
         Wallcheck();
         StateMachine();
-
+        Meter.fillAmount = climbTimer / maxClimbTime;
         if (climbing || clasping) ClimbingMovement();
     }
     private void StateMachine()
@@ -63,7 +67,7 @@ public class ClaspClimb : MonoBehaviour
             {
                 StartClasp();
             }
-            if (clasping)
+            if (clasping) 
             {
                 if (climbTimer > 0) climbTimer -= (Time.deltaTime / claspTimerSlowDown);
                 if (climbTimer <= 0) StopClasping();
@@ -119,11 +123,13 @@ public class ClaspClimb : MonoBehaviour
         {
             StopClimbing();
         }
+        rb.useGravity = false;
         clasping = true;
         pm.clasping = true;
     }
     private void StopClasping()
     {
+        rb.useGravity = true;
         clasping = false;
         pm.clasping = false;
     }
