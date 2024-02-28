@@ -143,14 +143,12 @@ public class ClaspClimb : MonoBehaviour
         if (climbing)
         {
             StopClimbing();
-        }
-        rb.useGravity = false;
+        }       
         clasping = true;
         pm.clasping = true;
     }
     private void StopClasping()
-    {
-        rb.useGravity = true;
+    { 
         clasping = false;
         pm.clasping = false;
     }
