@@ -147,59 +147,54 @@ public class Movement : MonoBehaviour
     }
     private void StateHandler()
     {
-        //mode - clasping
-        if(clasping)
+        switch (true)
         {
-            state = MovementState.clasping;
-            
-        }
-        //mode - climbing
-        else if(climbing)
-        {
-            state = MovementState.climbing;
-            desiredMoveSpeed = climbSpeed;
-           
-        }
-        //mode - sliding
-        else if(sliding)
-        {
-            state = MovementState.sliding;
+            //mode - clasping
+            case bool _ when clasping:
+                state = MovementState.clasping;
+                break;
+            //mode - climbing
+            case bool _ when climbing:
+                state = MovementState.climbing;
+                desiredMoveSpeed = climbSpeed;
+                break;
+            //mode - sliding
+            case bool _ when sliding:
+                state = MovementState.sliding;
 
-            if (OnSlope() && rb.velocity.y < 0.1f)
-            {
-                desiredMoveSpeed = slideSpeed;
-            }
-            else 
-            {
+                if (OnSlope() && rb.velocity.y < 0.1f)
+                {
+                    desiredMoveSpeed = slideSpeed;
+                }
+                else
+                {
+                    desiredMoveSpeed = sprintSpeed;
+                }
+                break;
+            //sprint mode
+            case bool _ when grounded && Input.GetKey(sprintKey) && !Input.GetKey(crouchKey):
+                state = MovementState.sprinting;
                 desiredMoveSpeed = sprintSpeed;
-            }
-        }
-        //sprint mode
-        else if(grounded && Input.GetKey(sprintKey) && !Input.GetKey(crouchKey))
-        {
-            state = MovementState.sprinting;
-            desiredMoveSpeed = sprintSpeed;
-        }
-        //crouch mode
-        else if(Input.GetKey(crouchKey))
-        {
-            state = MovementState.crouching;
-            desiredMoveSpeed = crouchSpeed;
-        }
-        //walk mode
-        else if(grounded)
-        {
-            state = MovementState.walking;
-            desiredMoveSpeed = walkSpeed; 
-        }
-        //air mode
-        else
-        {
-            state = MovementState.air;
+                break;
+            //crouch mode
+            case bool _ when Input.GetKey(crouchKey):
+                state = MovementState.crouching;
+                desiredMoveSpeed = crouchSpeed;
+                break;
+            //walk mode
+            case bool _ when grounded:
+                state = MovementState.walking;
+                desiredMoveSpeed = walkSpeed;
+                break;
+            //air mode
+            default:
+
+                state = MovementState.air;
+                break;
         }
 
         // check if the desiredMovespeed has changed drastically
-        if(Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4 && moveSpeed != 0)
+        if (Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4 && moveSpeed != 0)
         {
             StopAllCoroutines();
             StartCoroutine(SmoothlyLerpMoveSpeed());

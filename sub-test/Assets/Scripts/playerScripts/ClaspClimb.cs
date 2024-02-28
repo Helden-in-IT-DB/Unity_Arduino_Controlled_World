@@ -44,43 +44,44 @@ public class ClaspClimb : MonoBehaviour
     {
         Wallcheck();
         StateMachine();
-        Meter.fillAmount = climbTimer / maxClimbTime;
+        Meter.fillAmount = climbTimer / maxClimbTime; 
         if (climbing || clasping) ClimbingMovement();
     }
     private void StateMachine()
     {
-        // state 1 - climbing
-        if(wallFront && Input.GetKey(KeyCode.W) && wallLookAngle <= maxWallLookAngle)
+        switch (true)
         {
-            if(!climbing && climbTimer > 0)
-            {
-                StartClimbing();
-            }
+            // state 1 - climbing
+            case bool _ when wallFront && Input.GetKey(KeyCode.W) && wallLookAngle <= maxWallLookAngle:
+                if (!climbing && climbTimer > 0)
+                {
+                    StartClimbing();
+                }
 
-            if (climbTimer > 0) climbTimer -= Time.deltaTime;
-            if (climbTimer <= 0) StopClimbing();
+                if (climbTimer > 0) climbTimer -= Time.deltaTime;
+                if (climbTimer <= 0) StopClimbing();
+                break;
+            // state 2 - clasping
+            case bool _ when Input.GetKey(grab):
+                if (climbTimer > 0 && wallFront)
+                {
+                    StartClasp();
+                }
+                if (clasping)
+                {
+                    if (climbTimer > 0) climbTimer -= (Time.deltaTime / claspTimerSlowDown);
+                    if (climbTimer <= 0) StopClasping();
+                }
+                break;
+            // state 3 - none
+            default:
+                if (climbing) StopClimbing();
+                if (clasping) StopClasping();
+                break;
         }
-        // state 2 - clasping
-        else if (Input.GetKey(grab))
-        {
-            if (climbTimer > 0 && wallFront)
-            {
-                StartClasp();
-            }
-            if (clasping) 
-            {
-                if (climbTimer > 0) climbTimer -= (Time.deltaTime / claspTimerSlowDown);
-                if (climbTimer <= 0) StopClasping();
-            }
-        }
-        // state 3 - none
-        else
-        {
-            if(climbing) StopClimbing();
-            if(clasping) StopClasping();
-        }
+
     }
-        private void Wallcheck()
+    private void Wallcheck()
     {
         wallFront = Physics.SphereCast(transform.position, sphereCastRadius, orientation.forward, out frontWallHit, detectionLength, whatIsGround);
         wallLookAngle = Vector3.Angle(orientation.forward, - frontWallHit.normal);
