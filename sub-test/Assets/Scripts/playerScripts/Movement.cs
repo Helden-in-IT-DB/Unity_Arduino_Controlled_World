@@ -37,7 +37,7 @@ public class Movement : MonoBehaviour
 
     public float groundDrag;
    
-   //jump
+   [Header("jumping")]
    public float jumpForce;
    public float jumpCooldown;
    public float airMultiplier;
