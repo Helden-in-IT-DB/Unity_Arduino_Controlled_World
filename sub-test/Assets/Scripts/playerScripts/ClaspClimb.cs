@@ -26,6 +26,20 @@ public class ClaspClimb : MonoBehaviour
     public float claspSpeed;
     private bool clasping;
 
+    
+    [Header("ClimbJumping")]
+    public float climbJumpUpForce;
+    public float climbJumpBackForce;
+
+    public int climbJumps;
+    private int climbJumpsLeft;
+
+    [Header("Exiting")]
+    public bool exitingWall;
+    public float exitingWallTime;
+    public float exitingWallTimer;
+
+
     [Header("Detection")]
     public float detectionLength;
     public float sphereCastRadius;
@@ -41,7 +55,7 @@ public class ClaspClimb : MonoBehaviour
 
     [Header("keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
-    public KeyCode grab = KeyCode.LeftAlt;
+    public KeyCode grab = KeyCode.Mouse1;
 
     void Start()
     {
@@ -70,7 +84,12 @@ public class ClaspClimb : MonoBehaviour
                 if (climbTimer > 0) climbTimer -= Time.deltaTime;
                 if (climbTimer <= 0) StopClimbing();
                 break;
-            // state 2 - clasping
+            //state 2 exiting wall
+            case bool _ when exitingWall:
+
+            break;
+            
+            // state 3 - clasping
             case bool _ when Input.GetKey(grab):
                 if (climbTimer > 0 && wallFront)
                 {
@@ -82,7 +101,7 @@ public class ClaspClimb : MonoBehaviour
                     if (climbTimer <= 0) StopClasping();
                 }
                 break;
-            // state 3 - none
+            // state 4 - none
             default:
                 if (climbing) StopClimbing();
                 if (clasping) StopClasping();
