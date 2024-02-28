@@ -153,11 +153,13 @@ public class Movement : MonoBehaviour
             case bool _ when clasping:
                 state = MovementState.clasping;
                 break;
+                
             //mode - climbing
             case bool _ when climbing:
                 state = MovementState.climbing;
                 desiredMoveSpeed = climbSpeed;
                 break;
+
             //mode - sliding
             case bool _ when sliding:
                 state = MovementState.sliding;
@@ -171,21 +173,25 @@ public class Movement : MonoBehaviour
                     desiredMoveSpeed = sprintSpeed;
                 }
                 break;
+
             //sprint mode
             case bool _ when grounded && Input.GetKey(sprintKey) && !Input.GetKey(crouchKey):
                 state = MovementState.sprinting;
                 desiredMoveSpeed = sprintSpeed;
                 break;
+                
             //crouch mode
             case bool _ when Input.GetKey(crouchKey):
                 state = MovementState.crouching;
                 desiredMoveSpeed = crouchSpeed;
                 break;
+
             //walk mode
             case bool _ when grounded:
                 state = MovementState.walking;
                 desiredMoveSpeed = walkSpeed;
                 break;
+
             //air mode
             default:
 

@@ -35,9 +35,18 @@ public class ClaspClimb : MonoBehaviour
     private RaycastHit frontWallHit;
     private bool wallFront;
 
+    [Header("stamina regen")]
+    public float groundRegen;
+    public float airRegen;
+
     [Header("keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode grab = KeyCode.LeftAlt;
+
+    void Start()
+    {
+        climbTimer = maxClimbTime;
+    }
 
     // Update is called once per frame
     void Update()
@@ -87,12 +96,23 @@ public class ClaspClimb : MonoBehaviour
         wallLookAngle = Vector3.Angle(orientation.forward, - frontWallHit.normal);
 
         
-        if (pm.grounded)
+        if (climbTimer < maxClimbTime)
         {
-            climbTimer = maxClimbTime;
+            if (pm.grounded)
+            {
+                PassiveRegen(groundRegen);
+            }
+            else if (pm.state == Movement.MovementState.air)
+            {
+                PassiveRegen(airRegen);
+            }
         }
     }
 
+    private void PassiveRegen(float RegenMultiplier)
+    {
+        climbTimer += (Time.deltaTime / RegenMultiplier);
+    }
     private void StartClimbing()
     {
         if (clasping)
