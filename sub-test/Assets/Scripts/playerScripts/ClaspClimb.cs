@@ -72,8 +72,16 @@ public class ClaspClimb : MonoBehaviour
     {
         Wallcheck();
         StateMachine();
+        TimerCheck();
         Meter.fillAmount = climbTimer / maxClimbTime; 
         if ((climbing || clasping) && !exitingWall) ClimbingMovement();
+    }
+
+    private void TimerCheck()
+    {
+        if (exitingWallTimer < 0) exitingWallTimer = 0;
+        if (climbTimer < 0) climbTimer = 0;
+        else if (climbTimer > maxClimbTime) climbTimer = maxClimbTime;
     }
     private void StateMachine()
     {
@@ -121,18 +129,21 @@ public class ClaspClimb : MonoBehaviour
         //switch for wall exiting
         switch (true)
         {
+            // wall jump mode 2 - jump off when clasping and facing wall
+            case bool _ when wallFront && Input.GetKey(jumpKey) && clasping:
+            // exit mode 1 - get off the wall when when clasping, looking at wall, walking backwards
+            case bool _ when wallFront && Input.GetKey(KeyCode.S) && clasping:
+                WallRelease();
+                break;
+            case bool _ when !wallFront && Input.GetKey(KeyCode.W) && clasping:
+                WallRelease();
+                break;
             // ground / climb ump check to avoid repetition
             case bool _ when pm.grounded || climbJumpsLeft == 0:
                 break;
             // wall jump mode 1 - normal wall jump when wall in infront
-            case bool _ when wallFront && Input.GetKeyDown(jumpKey) && climbing:
+            case bool _ when wallFront && Input.GetKey(jumpKey) && climbing:
                 ClimbBackJump();
-                break;
-            // wall jump mode 2 - jump off when clasping and facing wall
-            case bool _ when wallFront && Input.GetKeyDown(jumpKey) && clasping:
-            // exit mode 1 - get off the wall when when clasping, looking at wall, walking backwards
-            case bool _ when wallFront && Input.GetKeyDown(KeyCode.S):
-                WallRelease();
                 break;
         }
 
@@ -186,8 +197,8 @@ public class ClaspClimb : MonoBehaviour
         else if (clasping)
         {
              rb.velocity = new Vector3(rb.velocity.x, claspSpeed, rb.velocity.z);
-            rb.constraints = RigidbodyConstraints.FreezePositionZ;
-            rb.constraints = RigidbodyConstraints.FreezePositionX;  
+            rb.constraints = RigidbodyConstraints.FreezePositionX;
+            rb.constraints = RigidbodyConstraints.FreezePositionZ;  
         }
     }
     private void StopClimbing()
