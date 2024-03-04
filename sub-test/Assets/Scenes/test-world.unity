@@ -11956,6 +11956,18 @@ PrefabInstance:
       propertyPath: Meter
       value: 
       objectReference: {fileID: 100970021}
+    - target: {fileID: 6276916223199190168, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: pushWayForce
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6276916223199190168, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: climbJumpUpForce
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6276916223199190168, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: SideJumpForwardFroce
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6834727942914902005, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
       propertyPath: speedTeller
       value: 

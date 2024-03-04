@@ -30,6 +30,8 @@ public class ClaspClimb : MonoBehaviour
     [Header("ClimbJumping")]
     public float climbJumpUpForce;
     public float climbJumpBackForce;
+    public float SideJumpForwardFroce;
+    public float pushWayForce;
 
     public int climbJumps;
     private int climbJumpsLeft;
@@ -44,11 +46,16 @@ public class ClaspClimb : MonoBehaviour
     public float detectionLength;
     public float sphereCastRadius;
     public float maxWallLookAngle;
-    public float maxSideWallAngle;
     private float wallLookAngle;
 
     private RaycastHit frontWallHit;
-    private bool wallFront;
+    private RaycastHit rightwallHit;
+    private RaycastHit leftWallHit;
+    private RaycastHit backWallhit;
+    public bool wallFront;
+    public bool wallBack;
+    public bool wallRight;
+    public bool wallLeft;
 
     private Transform lastWall;
     private Vector3 lastWallNomral;
@@ -61,6 +68,9 @@ public class ClaspClimb : MonoBehaviour
     [Header("keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode grab = KeyCode.Mouse1;
+    
+
+
 
     void Start()
     {
@@ -129,30 +139,34 @@ public class ClaspClimb : MonoBehaviour
         //switch for wall exiting
         switch (true)
         {
+            case bool _ when !wallFront && Input.GetKey(jumpKey) && clasping:
+                Claspjump();
+                break;
             // wall jump mode 2 - jump off when clasping and facing wall
             case bool _ when wallFront && Input.GetKey(jumpKey) && clasping:
             // exit mode 1 - get off the wall when when clasping, looking at wall, walking backwards
             case bool _ when wallFront && Input.GetKey(KeyCode.S) && clasping:
                 WallRelease();
                 break;
-            case bool _ when !wallFront && Input.GetKey(KeyCode.W) && clasping:
-                WallRelease();
-                break;
-            // ground / climb ump check to avoid repetition
+            // ground / climb jump check to avoid repetition
             case bool _ when pm.grounded || climbJumpsLeft == 0:
                 break;
             // wall jump mode 1 - normal wall jump when wall in infront
             case bool _ when wallFront && Input.GetKey(jumpKey) && climbing:
                 ClimbBackJump();
                 break;
+
         }
 
     }
     private void Wallcheck()
     {
         wallFront = Physics.SphereCast(transform.position, sphereCastRadius, orientation.forward, out frontWallHit, detectionLength, whatIsGround);
-        wallLookAngle = Vector3.Angle(orientation.forward, - frontWallHit.normal);
+        wallBack = Physics.SphereCast(transform.position, sphereCastRadius, -orientation.forward, out backWallhit, detectionLength, whatIsGround);
+        wallRight = Physics.SphereCast(transform.position, sphereCastRadius, orientation.right, out rightwallHit, detectionLength, whatIsGround);
+        wallLeft = Physics.SphereCast(transform.position, sphereCastRadius, -orientation.right, out leftWallHit, detectionLength, whatIsGround);
 
+        wallLookAngle = Vector3.Angle(orientation.forward, - frontWallHit.normal);
         bool newWall = frontWallHit.transform != lastWall || Mathf.Abs(Vector3.Angle(lastWallNomral, frontWallHit.normal)) > minWallNormalAngleChange;
         
         if (climbTimer < maxClimbTime)
@@ -171,6 +185,8 @@ public class ClaspClimb : MonoBehaviour
             climbJumpsLeft = climbJumps;
         }
     }
+
+
 
     private void PassiveRegen(float RegenMultiplier)
     {
@@ -197,8 +213,7 @@ public class ClaspClimb : MonoBehaviour
         else if (clasping)
         {
              rb.velocity = new Vector3(rb.velocity.x, claspSpeed, rb.velocity.z);
-            rb.constraints = RigidbodyConstraints.FreezePositionX;
-            rb.constraints = RigidbodyConstraints.FreezePositionZ;  
+            rb.constraints = RigidbodyConstraints.FreezePosition;
         }
     }
     private void StopClimbing()
@@ -232,6 +247,30 @@ public class ClaspClimb : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(forceToApply, ForceMode.Impulse);
 
+        climbJumpsLeft--;
+    }
+    private void Claspjump()
+    {
+        exitingWall = true;
+        exitingWallTimer = exitingWallTime;
+        Vector3 forceToApply;
+
+        if (wallRight)
+        {
+            forceToApply = transform.up * (climbJumpUpForce / 2) + orientation.forward * SideJumpForwardFroce + -orientation.right * pushWayForce;
+        }
+        else if (wallLeft)
+        {
+            forceToApply = transform.up * (climbJumpUpForce / 2) + orientation.forward * SideJumpForwardFroce + orientation.right * pushWayForce;
+        }
+        else
+        {
+            forceToApply = transform.up * (climbJumpUpForce / 2) + orientation.forward * SideJumpForwardFroce;
+        }
+
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        rb.AddForce(forceToApply, ForceMode.Impulse);
+        Debug.Log(wallRight);
         climbJumpsLeft--;
     }
     private void WallRelease()
