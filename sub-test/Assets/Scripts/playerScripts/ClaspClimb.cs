@@ -255,19 +255,19 @@ public class ClaspClimb : MonoBehaviour
         exitingWallTimer = exitingWallTime;
         Vector3 forceToApply;
 
-        if (wallRight)
+        switch (true)
         {
-            forceToApply = transform.up * (climbJumpUpForce / 2) + orientation.forward * SideJumpForwardFroce + -orientation.right * pushWayForce;
-        }
-        else if (wallLeft)
-        {
-            forceToApply = transform.up * (climbJumpUpForce / 2) + orientation.forward * SideJumpForwardFroce + orientation.right * pushWayForce;
-        }
-        else
-        {
-            forceToApply = transform.up * (climbJumpUpForce / 2) + orientation.forward * SideJumpForwardFroce;
-        }
+            case bool _ when wallRight:
+                forceToApply = transform.up * (climbJumpUpForce / 2) + orientation.forward * SideJumpForwardFroce + -orientation.right * pushWayForce;
+                break;
 
+            case bool _ when wallLeft:
+                forceToApply = transform.up * (climbJumpUpForce / 2) + orientation.forward * SideJumpForwardFroce + orientation.right * pushWayForce;
+                break;
+            default:
+                forceToApply = transform.up * (climbJumpUpForce / 2) + orientation.forward * SideJumpForwardFroce;
+                break;
+        }
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(forceToApply, ForceMode.Impulse);
         Debug.Log(wallRight);
