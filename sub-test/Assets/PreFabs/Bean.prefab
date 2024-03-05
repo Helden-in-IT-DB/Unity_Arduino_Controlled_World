@@ -392,8 +392,10 @@ MonoBehaviour:
   climbTimer: 0
   claspTimerSlowDown: 2
   claspSpeed: 0.1
-  climbJumpUpForce: 14
+  climbJumpUpForce: 8
   climbJumpBackForce: 5
+  SideJumpForwardFroce: 10
+  pushWayForce: 4
   climbJumps: 1
   exitingWall: 0
   exitingWallTime: 0.2
@@ -401,7 +403,10 @@ MonoBehaviour:
   detectionLength: 0.7
   sphereCastRadius: 0.25
   maxWallLookAngle: 40
-  maxSideWallAngle: 0
+  wallFront: 0
+  wallBack: 0
+  wallRight: 0
+  wallLeft: 0
   minWallNormalAngleChange: 5
   groundRegen: 1
   airRegen: 10

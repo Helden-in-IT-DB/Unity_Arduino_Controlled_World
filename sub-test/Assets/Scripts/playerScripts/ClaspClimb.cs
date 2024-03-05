@@ -52,10 +52,10 @@ public class ClaspClimb : MonoBehaviour
     private RaycastHit rightwallHit;
     private RaycastHit leftWallHit;
     private RaycastHit backWallhit;
-    public bool wallFront;
-    public bool wallBack;
-    public bool wallRight;
-    public bool wallLeft;
+    private bool wallFront;
+    private bool wallBack;
+    private bool wallRight;
+    private bool wallLeft;
 
     private Transform lastWall;
     private Vector3 lastWallNomral;
