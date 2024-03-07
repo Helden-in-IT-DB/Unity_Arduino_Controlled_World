@@ -105,6 +105,8 @@ public class BaseGun : MonoBehaviour
         currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
         currentBullet.GetComponent<Rigidbody>().AddForce(fpsCam.transform.up * upwardForce, ForceMode.Impulse);
 
+        //add recoil to player
+        
         //muzzle flash for when i want
         if (muzzleFlash != null)
         {

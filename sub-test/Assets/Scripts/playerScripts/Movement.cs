@@ -14,7 +14,6 @@ public class Movement : MonoBehaviour
     //climb script
     public ClaspClimb CmS;
     public TextMeshProUGUI stateTeller;
-    public TextMeshProUGUI speedTeller;
 
     [Header("slope handling")]
     public float maxSlopeAngle;
@@ -109,7 +108,6 @@ public class Movement : MonoBehaviour
             rb.drag = 0;
         }
         stateTeller.text = $"{state}";
-        speedTeller.text = $"{moveSpeed}";
     }
     private void FixedUpdate()
     {
