@@ -1,67 +1,109 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.IO.Ports;
+using System;
 
 public class move : MonoBehaviour
 {
-    SerialPort sp = new SerialPort("COM4", 9600);
+    string msg;
+    SerialPort sp = new SerialPort("COM4", baudRate: 9600);
     // Start is called before the first frame update
     void Start()
     {
-        sp.Open ();
-        sp.ReadTimeout = 1;
+        InitArduino();
     }
 
+    void InitArduino()
+    {
+        try
+        {
+            sp.Open();
+            sp.ReadTimeout = 1000;
+        }
+        catch (Exception e)
+        {
+            Debug.Log(message: "rip lol: " + e);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
-        if (sp.IsOpen) 
+        try 
         {
-            try 
+            if (msg != sp.ReadLine())
             {
-                if (sp.ReadByte() == 1) 
-                {
+                Debug.Log(message: sp.ReadLine());
+                msg = sp.ReadLine();
+            }
+            switch (msg)
+            {
+                case "Left":
+                    transform.Translate(Vector3.left * Time.deltaTime * 5);
+                    break;
+                case "Front":
                     transform.Translate(Vector3.forward * Time.deltaTime * 5);
-                }
-                if (sp.ReadByte() == 2)
-                {
-                    transform.Translate(Vector3.back * Time.deltaTime * 5);
-                }
-            } catch (System.Exception) {}
+                    break;
+                case "Right":
+                    transform.Translate(Vector3.right * Time.deltaTime * 5);
+                    break;
+                default:
+                    break;
+            }
         }
+        catch (Exception e)
+        {
+            Debug.Log(message: "Somthing went wrong lol: " + e);
+        }
+    }
+    void OnAplicationQuit()
+    {
+        Debug.Log(message: "closing port");
+        sp.Close();
+        sp.Dispose();
     }
 }
 
-//arduiono code; https://www.youtube.com/watch?v=iWPU9NSC-34
 
-//const int butPin1 = 6; //connect button to digital pin 6
-//const int butPin2 = 7; //connect button to digital pin 7
 
-//void setup()
-//{
-//   Serial.begin(9600);
 
-//   pinMode(butPin1, INPUT);
-//   pinMode(butPin2, INPUT);
+/*version 2 with danni
 
-//   digitalWrite(butPin1, HIGH);
-//   digitalWrite(butPin1, HIGH);
-//    }
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(4, INPUT_PULLUP);
+  pinMode(3, INPUT_PULLUP);
+  pinMode(2, INPUT_PULLUP);
+  Serial.begin(9600);
+  }
 
-//void loop()
-//{
-//   if (digitalRead(butPin1) == LOW)
-//   {
-//  Serial.write(1);
-//  Serial.flush();
-//  delay(20);
-//   }
-//   if (digitalRead(butPin2) == LOW)
-//   {
-//  Serial.println("RIGHT");
-//  Serial.write(2);
-//  Serial.flush();
-//  delay(20);
-//   }
-//}
+int buttonStatus = 0;
+int buttonStatus2 = 0;
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  int pinValue2 = digitalRead(2);
+  int pinValue3 = digitalRead(3);
+  int pinValue4 = digitalRead(4);
+
+  delay(10);
+
+  //check button input
+  if (pinValue2 == 0)
+  {
+    Serial.println("Left");
+  }
+  if (pinValue3 == 0)
+  {
+    Serial.println("Front");
+  }
+    if (pinValue4 == 0)
+  {
+    Serial.println("Right");
+  }
+  if ((pinValue4 && pinValue3 && pinValue2) != 0)
+  {
+    Serial.println("Null");
+  }
+}
+
+
+*/  
