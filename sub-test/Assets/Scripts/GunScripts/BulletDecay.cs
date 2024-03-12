@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public Rigidbody rb;
+    public bool StickOnImpact;
     public float lifespan; // Time before the bullet disappears if not collided with anything
     private float timer;
 
@@ -22,7 +24,15 @@ public class Bullet : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         // Check if the bullet has collided with something
-        DestroyBullet();
+        if (StickOnImpact)
+        {
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+        }
+        else
+        {
+            DestroyBullet();
+        }
+        
     }
 
     void DestroyBullet()
@@ -30,5 +40,5 @@ public class Bullet : MonoBehaviour
         
         // Destroy the bullet
         Destroy(gameObject);
-    }
+    } 
 }

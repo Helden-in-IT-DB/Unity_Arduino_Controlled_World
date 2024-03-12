@@ -145,4 +145,8 @@ public class BaseGun : MonoBehaviour
         bulletsLeft = magazineSize;
         reloading = false;
     }
+    public void DisableAmmoText()
+    {
+        ammoDisplay.text = null;
+    }
 }

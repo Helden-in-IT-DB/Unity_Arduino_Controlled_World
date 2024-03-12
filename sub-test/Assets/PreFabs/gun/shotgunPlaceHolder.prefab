@@ -11,12 +11,10 @@ GameObject:
   - component: {fileID: 6359453876917745915}
   - component: {fileID: 6351047324095915532}
   - component: {fileID: 752638883591714502}
-  - component: {fileID: 6129756210076831936}
   - component: {fileID: 8601470555694893508}
   - component: {fileID: 6062281262160140605}
-  - component: {fileID: 2630679694173833996}
   m_Layer: 0
-  m_Name: gunPlaceHolder
+  m_Name: shotgunPlaceHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e18f9169c189c2a4eaa391d16fb204d1, type: 2}
+  - {fileID: 2100000, guid: 40b6f9162f4e44e499abcb96b62e8f97, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,33 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &6129756210076831936
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 253631625858280319}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 2
-  m_Constraints: 0
-  m_CollisionDetection: 1
 --- !u!65 &8601470555694893508
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -132,7 +103,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -150,41 +121,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fpsCam: {fileID: 0}
   attackPoint: {fileID: 7177500669980105802}
-  bullet: {fileID: 1422580747458392854, guid: 6987a5ff8fc6e9f49ab9f2a521f5182a, type: 3}
-  shootForce: 100
+  bullet: {fileID: 1422580747458392854, guid: 63f9379994a09804195fe9faa3a668cb, type: 3}
+  shootForce: 200
   upwardForce: 0
-  timeBetweenShooting: 0.1
+  timeBetweenShooting: 0.5
   spread: 3
-  reloadTime: 1.5
-  timeBetweenShots: 0
-  magazineSize: 25
-  bulletsPerTab: 1
+  reloadTime: 2
+  timeBetweenShots: 0.5
+  magazineSize: 16
+  bulletsPerTab: 8
   allowButtonHold: 0
   allowInvoke: 1
   muzzleFlash: {fileID: 0}
   ammoDisplay: {fileID: 0}
---- !u!114 &2630679694173833996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 253631625858280319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcb09130ff97f9248a9aa8ebee66bc3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunScript: {fileID: 6062281262160140605}
-  rb: {fileID: 6129756210076831936}
-  coll: {fileID: 8601470555694893508}
-  player: {fileID: 0}
-  gunContainer: {fileID: 0}
-  fpsCam: {fileID: 0}
-  pickUpRange: 4
-  dropForwardForce: 15
-  dropUpwardForce: 0.5
-  equipped: 0
 --- !u!1 &6850356440834052225
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +159,7 @@ Transform:
   m_GameObject: {fileID: 6850356440834052225}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.479}
+  m_LocalPosition: {x: 0, y: 0, z: 0.452}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
