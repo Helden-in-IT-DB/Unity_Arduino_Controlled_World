@@ -3381,6 +3381,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1549222687}
     - target: {fileID: 6062281262160140605, guid: 09ba854497c28ea41bb1e03e3d4fa8bf, type: 3}
+      propertyPath: spread
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062281262160140605, guid: 09ba854497c28ea41bb1e03e3d4fa8bf, type: 3}
       propertyPath: playerRb
       value: 
       objectReference: {fileID: 1884375668}
@@ -12120,6 +12124,10 @@ PrefabInstance:
       propertyPath: Meter
       value: 
       objectReference: {fileID: 100970021}
+    - target: {fileID: 6276916223199190168, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: exitingWallTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6834727942914902005, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
       propertyPath: speedTeller
       value: 
@@ -13995,6 +14003,10 @@ PrefabInstance:
       propertyPath: fpsCam
       value: 
       objectReference: {fileID: 1549222687}
+    - target: {fileID: 6062281262160140605, guid: 8b065dea4332bd24b83c88651d6e4bfd, type: 3}
+      propertyPath: spread
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6062281262160140605, guid: 8b065dea4332bd24b83c88651d6e4bfd, type: 3}
       propertyPath: playerRb
       value: 
