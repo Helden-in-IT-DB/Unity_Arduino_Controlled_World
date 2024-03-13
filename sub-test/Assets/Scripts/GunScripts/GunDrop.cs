@@ -68,7 +68,7 @@ public class GunDrop : MonoBehaviour
 
         //makes rigidbody kinematic and boxcollider a trigger
         rb.isKinematic = true;
-        coll.isTrigger = true;
+        coll.enabled = false;
 
         //Enable script
         gunScript.enabled = true;
@@ -83,7 +83,7 @@ public class GunDrop : MonoBehaviour
 
         //makes rigidbody not kinematic and boxcollider normal
         rb.isKinematic = false;
-        coll.isTrigger = false;
+        coll.enabled = true;
 
         //sets gun's velocity to the one of the player
         rb.velocity = player.GetComponent<Rigidbody>().velocity;

@@ -23,16 +23,18 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        // Check if the bullet has collided with something
-        if (StickOnImpact)
+        if (collision.gameObject.tag != "bullet")
         {
-            rb.constraints = RigidbodyConstraints.FreezeAll;
+            // Check if the bullet has collided with something
+            if (StickOnImpact)
+            {
+                rb.constraints = RigidbodyConstraints.FreezeAll;
+            }
+            else
+            {
+                DestroyBullet();
+            }
         }
-        else
-        {
-            DestroyBullet();
-        }
-        
     }
 
     void DestroyBullet()

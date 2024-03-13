@@ -148,21 +148,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a2e057d60f39ab49967d188f72ef781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fpsCam: {fileID: 0}
-  attackPoint: {fileID: 7177500669980105802}
   bullet: {fileID: 1422580747458392854, guid: 6987a5ff8fc6e9f49ab9f2a521f5182a, type: 3}
   shootForce: 100
   upwardForce: 0
   timeBetweenShooting: 0.1
-  spread: 3
+  spread: 1.5
   reloadTime: 1.5
-  timeBetweenShots: 0
+  timeBetweenShots: 0.1
   magazineSize: 25
-  bulletsPerTab: 1
+  bulletsPerTap: 1
   allowButtonHold: 0
-  allowInvoke: 1
+  playerRb: {fileID: 0}
+  recoilForce: 0.1
+  fpsCam: {fileID: 0}
+  attackPoint: {fileID: 7177500669980105802}
   muzzleFlash: {fileID: 0}
-  ammoDisplay: {fileID: 0}
+  ammunitionDisplay: {fileID: 0}
+  allowInvoke: 1
 --- !u!114 &2630679694173833996
 MonoBehaviour:
   m_ObjectHideFlags: 0
