@@ -67,6 +67,7 @@ public class move : MonoBehaviour
         sp.Close();
         sp.Dispose();
     }
+    // disables the scripts
     public void ShutDown()
     {
       working = false;
@@ -74,6 +75,7 @@ public class move : MonoBehaviour
       Debug.Log("disabling script");
       this.enabled = false;
     }
+    // re-enables the script
     public void TurnOn()
     {
       Debug.Log("enabling script");
