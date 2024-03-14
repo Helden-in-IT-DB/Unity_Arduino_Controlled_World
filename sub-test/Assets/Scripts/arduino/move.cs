@@ -5,7 +5,9 @@ using System;
 public class move : MonoBehaviour
 {
     string msg;
+    //makes a connecttion with the arduino. check device manager for which 'COM'
     SerialPort sp = new SerialPort("COM4", baudRate: 9600);
+    public bool working;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,12 +18,16 @@ public class move : MonoBehaviour
     {
         try
         {
+            //open's arduino connecttion
             sp.Open();
             sp.ReadTimeout = 1000;
+            working = true;
         }
         catch (Exception e)
         {
-            Debug.Log(message: "rip lol: " + e);
+          //debug message to show when something is not going right.
+            Debug.Log(message: "connection error: " + e);
+            ShutDown();
         }
     }
     // Update is called once per frame
@@ -51,7 +57,8 @@ public class move : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.Log(message: "Somthing went wrong lol: " + e);
+            Debug.Log(message: "input read error: " + e);
+            InitArduino();       
         }
     }
     void OnAplicationQuit()
@@ -59,6 +66,19 @@ public class move : MonoBehaviour
         Debug.Log(message: "closing port");
         sp.Close();
         sp.Dispose();
+    }
+    public void ShutDown()
+    {
+      working = false;
+      sp.Close();
+      Debug.Log("disabling script");
+      this.enabled = false;
+    }
+    public void TurnOn()
+    {
+      Debug.Log("enabling script");
+      this.enabled = true;
+      InitArduino();
     }
 }
 
