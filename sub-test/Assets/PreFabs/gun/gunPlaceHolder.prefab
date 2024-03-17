@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8601470555694893508}
   - component: {fileID: 6062281262160140605}
   - component: {fileID: 2630679694173833996}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: gunPlaceHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,10 +183,14 @@ MonoBehaviour:
   player: {fileID: 0}
   gunContainer: {fileID: 0}
   fpsCam: {fileID: 0}
-  pickUpRange: 4
+  WhatIsItem:
+    serializedVersion: 2
+    m_Bits: 512
   dropForwardForce: 15
   dropUpwardForce: 0.5
   equipped: 0
+  pickUpRange: 4
+  sphereCastRadius: 0.2
 --- !u!1 &6850356440834052225
 GameObject:
   m_ObjectHideFlags: 0

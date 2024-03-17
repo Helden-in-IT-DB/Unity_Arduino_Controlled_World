@@ -9,13 +9,19 @@ public class GunDrop : MonoBehaviour
     public Rigidbody rb;
     public BoxCollider coll;
     public Transform player, gunContainer, fpsCam;
+    public LayerMask WhatIsItem;
 
     [Header("gun drop stats")]
-    public float pickUpRange;
     public float dropForwardForce, dropUpwardForce;
 
     public bool equipped;
     public static bool slotFull;
+
+    [Header("detecttion")]
+    public float pickUpRange;
+    public float sphereCastRadius;
+    private RaycastHit itemFrontHit;
+    public bool itemFront;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,9 +44,10 @@ public class GunDrop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ItemCheck();
         //check if player is in range and 'E' is pressed
         Vector3 distanceToPlayer = player.position - transform.position;
-        if(!equipped && distanceToPlayer.magnitude <= pickUpRange && Input.GetKeyDown(KeyCode.E) && !slotFull)
+        if(!equipped && itemFront && Input.GetKeyDown(KeyCode.E) && !slotFull)
         {
             PickUp();
         }
@@ -54,6 +61,14 @@ public class GunDrop : MonoBehaviour
         {
             transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.Euler(Vector3.zero);
+        }
+    }
+    private void ItemCheck()
+    {
+        //itemFront = Physics.SphereCast(player.position, sphereCastRadius, fpsCam.forward, out itemFrontHit, pickUpRange, WhatIsItem);
+        if (Physics.Raycast(player.position, fpsCam.forward, out itemFrontHit))
+        {
+            Debug.Log(itemFrontHit.collider.gameObject);
         }
     }
     private void PickUp()

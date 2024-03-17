@@ -242,10 +242,7 @@ public class Movement : MonoBehaviour
     // like for lerp reference : https://docs.unity3d.com/ScriptReference/Mathf.Lerp.html
     private void MovePlayer()
     {
-//        if (CmS.exitingWall)
-//        {
-//     //       return;
-//        }
+
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         //on slope
         if(OnSlope())
