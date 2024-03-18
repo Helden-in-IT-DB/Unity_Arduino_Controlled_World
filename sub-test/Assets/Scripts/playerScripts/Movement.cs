@@ -130,14 +130,13 @@ public class Movement : MonoBehaviour
         }
 
         //when to crouch
-        if(Input.GetKey(crouchKey))
+        if(Input.GetKeyDown(crouchKey))
         {
             if (grounded && !OnSlope())
             {
                 rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
             }
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
-            
         }
         if(Input.GetKeyUp(crouchKey))
         {
@@ -303,7 +302,7 @@ public class Movement : MonoBehaviour
     }
     public bool OnSlope()
     {
-        if(Physics.Raycast(transform.position, Vector3.down, out slopehit, playerheight * 0.5f + 0.4f))
+        if(Physics.Raycast(transform.position, Vector3.down, out slopehit, playerheight * 0.5f + 0.4f, whatIsGround))
         {
             float angle = Vector3.Angle(Vector3.up, slopehit.normal);
             return angle <= maxSlopeAngle && angle != 0;

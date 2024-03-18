@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 6982718765280932351}
   - component: {fileID: 2209589585551793542}
   - component: {fileID: 3945684479777617359}
-  - component: {fileID: 6547793456760291845}
+  - component: {fileID: 6987386690665660613}
+  - component: {fileID: 6937156979901853070}
   m_Layer: 0
   m_Name: PlayerCam
   m_TagString: Untagged
@@ -27,12 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387617512105457083}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5005665165630746717}
+  m_Children:
+  - {fileID: 1328913725997227342}
+  m_Father: {fileID: 3239174066180514671}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &2209589585551793542
 Camera:
@@ -93,7 +95,20 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387617512105457083}
   m_Enabled: 1
---- !u!114 &6547793456760291845
+--- !u!114 &6987386690665660613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387617512105457083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b30b25ba01504845b9cbc1d8eb73c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camaraPos: {fileID: 2080253376643313968}
+--- !u!114 &6937156979901853070
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -259,6 +274,7 @@ GameObject:
   - component: {fileID: 6834727942914902005}
   - component: {fileID: 4021598926168314248}
   - component: {fileID: 6276916223199190168}
+  - component: {fileID: 4717911934449081704}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -282,6 +298,7 @@ Transform:
   - {fileID: 3590411625289855711}
   - {fileID: 2581290932410203960}
   - {fileID: 2080253376643313968}
+  - {fileID: 6982718765280932351}
   m_Father: {fileID: 7457495573764873921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &4157736620201942031
@@ -318,14 +335,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2288749641641856963}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95f58e9fc3870bd4f8bedb7a29b2114e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CmS: {fileID: 6276916223199190168}
   stateTeller: {fileID: 0}
-  speedTeller: {fileID: 0}
   maxSlopeAngle: 46
   walkSpeed: 7
   sprintSpeed: 10
@@ -357,7 +373,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2288749641641856963}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7153e039145e335419f38167d6b88c4f, type: 3}
   m_Name: 
@@ -375,7 +391,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2288749641641856963}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99fb148202cb0984cbc5f9c7ca0e707b, type: 3}
   m_Name: 
@@ -398,66 +414,42 @@ MonoBehaviour:
   pushWayForce: 4
   climbJumps: 1
   exitingWall: 0
-  exitingWallTime: 0.2
+  exitingWallTime: 0.5
   exitingWallTimer: 0
   detectionLength: 0.7
   sphereCastRadius: 0.25
   maxWallLookAngle: 40
-  wallFront: 0
-  wallBack: 0
-  wallRight: 0
-  wallLeft: 0
   minWallNormalAngleChange: 5
   groundRegen: 1
   airRegen: 10
   jumpKey: 32
   grab: 324
---- !u!1 &5077166427171642070
-GameObject:
+--- !u!143 &4717911934449081704
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5005665165630746717}
-  - component: {fileID: 492713268715048573}
-  m_Layer: 0
-  m_Name: CamaraHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5005665165630746717
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5077166427171642070}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6982718765280932351}
-  m_Father: {fileID: 7457495573764873921}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &492713268715048573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5077166427171642070}
+  m_GameObject: {fileID: 2288749641641856963}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b30b25ba01504845b9cbc1d8eb73c5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camaraPos: {fileID: 2080253376643313968}
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5838686341515461936
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,6 +589,37 @@ Transform:
   - {fileID: 2732651281389047135}
   m_Father: {fileID: 3239174066180514671}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7832899500578662940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1328913725997227342}
+  m_Layer: 0
+  m_Name: gun holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1328913725997227342
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7832899500578662940}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.249, y: -0.25, z: 0.55}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6982718765280932351}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9035296027643724134
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,6 +650,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3239174066180514671}
-  - {fileID: 5005665165630746717}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

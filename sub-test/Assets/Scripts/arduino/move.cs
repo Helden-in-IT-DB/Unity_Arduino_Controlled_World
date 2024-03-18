@@ -7,7 +7,12 @@ public class move : MonoBehaviour
     string msg;
     //makes a connecttion with the arduino. check device manager for which 'COM'
     SerialPort sp = new SerialPort("COM4", baudRate: 9600);
-    public bool working;
+    
+    //bool to check whether the arduino is working or plugged in
+    public bool arduinoWorking;
+    public KeyCode left;
+    public KeyCode forward;
+    public KeyCode right;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,13 +26,14 @@ public class move : MonoBehaviour
             //open's arduino connecttion
             sp.Open();
             sp.ReadTimeout = 1000;
-            working = true;
+            arduinoWorking = true;
         }
         catch (Exception e)
         {
           //debug message to show when something is not going right.
             Debug.Log(message: "connection error: " + e);
             ShutDown();
+            
         }
     }
     // Update is called once per frame
@@ -35,20 +41,16 @@ public class move : MonoBehaviour
     {
         try 
         {
-            if (msg != sp.ReadLine())
+            ArduinoInputReader();
+            switch (true)
             {
-                Debug.Log(message: sp.ReadLine());
-                msg = sp.ReadLine();
-            }
-            switch (msg)
-            {
-                case "Left":
+                case bool _ when msg == "Left" || (!arduinoWorking && Input.GetKey(left)):
                     transform.Translate(Vector3.left * Time.deltaTime * 5);
                     break;
-                case "Front":
+                case bool _ when msg == "Front"  || (!arduinoWorking && Input.GetKey(forward)):
                     transform.Translate(Vector3.forward * Time.deltaTime * 5);
                     break;
-                case "Right":
+                case bool _ when msg == "Right"  || (!arduinoWorking && Input.GetKey(right)):
                     transform.Translate(Vector3.right * Time.deltaTime * 5);
                     break;
                 default:
@@ -70,17 +72,28 @@ public class move : MonoBehaviour
     // disables the scripts
     public void ShutDown()
     {
-      working = false;
+      arduinoWorking = false;
       sp.Close();
       Debug.Log("disabling script");
-      this.enabled = false;
+      //this.enabled = false;
     }
     // re-enables the script
     public void TurnOn()
     {
       Debug.Log("enabling script");
-      this.enabled = true;
+      //this.enabled = true;
       InitArduino();
+    }
+    private void ArduinoInputReader()
+    {
+      if (arduinoWorking)
+      {
+        if (arduinoWorking && msg != sp.ReadLine())
+            {
+                Debug.Log(message: sp.ReadLine());
+                msg = sp.ReadLine();
+            }
+      }
     }
 }
 

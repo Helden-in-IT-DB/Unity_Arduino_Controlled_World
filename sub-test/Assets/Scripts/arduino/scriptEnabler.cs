@@ -15,7 +15,7 @@ public class scriptEnabler : MonoBehaviour
     {
         if (Input.GetKeyDown(action))
         {
-            if(script.working)
+            if(script.arduinoWorking)
             {
                 script.ShutDown();
             }

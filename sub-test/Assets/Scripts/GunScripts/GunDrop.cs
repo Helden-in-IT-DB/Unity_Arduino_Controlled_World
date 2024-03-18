@@ -21,7 +21,7 @@ public class GunDrop : MonoBehaviour
     public float pickUpRange;
     public float sphereCastRadius;
     private RaycastHit itemFrontHit;
-    public bool itemFront;
+    private bool itemFront;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +47,7 @@ public class GunDrop : MonoBehaviour
         ItemCheck();
         //check if player is in range and 'E' is pressed
         Vector3 distanceToPlayer = player.position - transform.position;
-        if(!equipped && itemFront && Input.GetKeyDown(KeyCode.E) && !slotFull)
+        if(!equipped &&  itemFront && Input.GetKeyDown(KeyCode.E) && !slotFull)
         {
             PickUp();
         }
@@ -57,18 +57,17 @@ public class GunDrop : MonoBehaviour
         {
             Drop();
         }
-        if (equipped)
+       /* if (equipped)
         {
             transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.Euler(Vector3.zero);
-        }
+        } */
     }
     private void ItemCheck()
     {
-        //itemFront = Physics.SphereCast(player.position, sphereCastRadius, fpsCam.forward, out itemFrontHit, pickUpRange, WhatIsItem);
-        if (Physics.Raycast(player.position, fpsCam.forward, out itemFrontHit))
+        if (itemFront = Physics.SphereCast(player.position, sphereCastRadius, fpsCam.forward, out itemFrontHit, pickUpRange, WhatIsItem))
         {
-            Debug.Log(itemFrontHit.collider.gameObject);
+            Debug.Log(itemFrontHit);
         }
     }
     private void PickUp()

@@ -8,11 +8,12 @@ public class Bullet : MonoBehaviour
     public bool StickOnImpact;
     public float lifespan; // Time before the bullet disappears if not collided with anything
     private float timer;
+    private float multiplier = 1;
 
     void Update()
     {
         // Increase the timer
-        timer += Time.deltaTime;
+        timer += Time.deltaTime * multiplier;
 
         // Check if the bullet has been alive for longer than its lifespan
         if (timer >= lifespan)
@@ -32,7 +33,7 @@ public class Bullet : MonoBehaviour
             }
             else
             {
-                DestroyBullet();
+                multiplier = 100;
             }
         }
     }
