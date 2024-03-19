@@ -139,20 +139,20 @@ public class ClaspClimb : MonoBehaviour
         //switch for wall exiting
         switch (true)
         {
-            case bool _ when !wallFront && Input.GetKey(jumpKey) && clasping:
+            case bool _ when !wallFront && Input.GetKeyDown(jumpKey) && clasping:
                 Claspjump();
                 break;
             // wall jump mode 2 - jump off when clasping and facing wall
-            case bool _ when wallFront && Input.GetKey(jumpKey) && clasping:
+            case bool _ when wallFront && Input.GetKeyDown(jumpKey) && clasping:
             // exit mode 1 - get off the wall when when clasping, looking at wall, walking backwards
-            case bool _ when wallFront && Input.GetKey(KeyCode.S) && clasping:
+            case bool _ when wallFront && Input.GetKeyDown(KeyCode.S) && clasping:
                 WallRelease();
                 break;
             // ground / climb jump check to avoid repetition
             case bool _ when pm.grounded || climbJumpsLeft == 0:
                 break;
             // wall jump mode 1 - normal wall jump when wall in infront
-            case bool _ when wallFront && Input.GetKey(jumpKey) && climbing:
+            case bool _ when wallFront && Input.GetKeyDown(jumpKey) && climbing:
                 ClimbBackJump();
                 break;
 
@@ -251,8 +251,6 @@ public class ClaspClimb : MonoBehaviour
     }
     private void Claspjump()
     {
-        exitingWall = true;
-        exitingWallTimer = exitingWallTime;
         Vector3 forceToApply;
 
         switch (true)
@@ -271,6 +269,8 @@ public class ClaspClimb : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(forceToApply, ForceMode.Impulse);
         Debug.Log(wallRight);
+        exitingWall = true;
+        exitingWallTimer = exitingWallTime;
         climbJumpsLeft--;
     }
     private void WallRelease()

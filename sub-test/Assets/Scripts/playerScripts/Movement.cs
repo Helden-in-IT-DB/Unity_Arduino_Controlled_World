@@ -14,6 +14,8 @@ public class Movement : MonoBehaviour
     //climb script
     public ClaspClimb CmS;
     public TextMeshProUGUI stateTeller;
+    public Collider coll;
+    private string oldName;
 
     [Header("slope handling")]
     public float maxSlopeAngle;
@@ -45,7 +47,11 @@ public class Movement : MonoBehaviour
     [Header("Crouching")]
     public float crouchSpeed;
     public float crouchYScale;
-    public float startYscale;
+    
+    //public float startYscale;
+    private Vector3 startScale;
+    private Vector3 crouchScale;
+    private float lerpSpeed = 1f;
 
    //controls
    [Header("Keybinds")]
@@ -89,7 +95,10 @@ public class Movement : MonoBehaviour
         rb.freezeRotation = true;
         readyToJump = true;
 
-        startYscale = transform.localScale.y;
+        //startYscale = transform.localScale.y;
+        startScale = new Vector3 (transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        crouchScale = new Vector3 (transform.localScale.x, crouchYScale, transform.localScale.z);
+        Debug.Log(message: $"crouchscaley = {crouchScale.y}. starscaley = {startScale.y}");
     }
     private void Update()
     {
@@ -98,7 +107,6 @@ public class Movement : MonoBehaviour
         MyInput();
         SpeedControl();
         StateHandler();
-
         if (grounded)
         {
             rb.drag = groundDrag;
@@ -136,11 +144,11 @@ public class Movement : MonoBehaviour
             {
                 rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
             }
-            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
+            transform.localScale = Vector3.Lerp(crouchScale, startScale, lerpSpeed * Time.deltaTime);
         }
         if(Input.GetKeyUp(crouchKey))
         {
-            transform.localScale = new Vector3(transform.localScale.x, startYscale, transform.localScale.z);
+            transform.localScale = Vector3.Lerp(startScale, crouchScale, lerpSpeed * Time.deltaTime / 2);
         }
     }
     private void StateHandler()
@@ -315,5 +323,13 @@ public class Movement : MonoBehaviour
     public Vector3 GetSlopeMoveDirection(Vector3 direction)
     {
         return Vector3.ProjectOnPlane(direction, slopehit.normal).normalized;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if((collision.gameObject.layer != whatIsGround) && collision.gameObject.name != oldName)
+        {
+            Debug.Log(collision.gameObject.name);
+            oldName = collision.gameObject.name;
+        }
     }
 }
