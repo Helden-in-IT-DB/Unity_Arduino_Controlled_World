@@ -98,7 +98,6 @@ public class Movement : MonoBehaviour
         //startYscale = transform.localScale.y;
         startScale = new Vector3 (transform.localScale.x, transform.localScale.y, transform.localScale.z);
         crouchScale = new Vector3 (transform.localScale.x, crouchYScale, transform.localScale.z);
-        Debug.Log(message: $"crouchscaley = {crouchScale.y}. starscaley = {startScale.y}");
     }
     private void Update()
     {
@@ -148,6 +147,7 @@ public class Movement : MonoBehaviour
         }
         if(Input.GetKeyUp(crouchKey))
         {
+            Debug.Log(message: "return from crouch");
             transform.localScale = Vector3.Lerp(startScale, crouchScale, lerpSpeed * Time.deltaTime / 2);
         }
     }
@@ -324,6 +324,7 @@ public class Movement : MonoBehaviour
     {
         return Vector3.ProjectOnPlane(direction, slopehit.normal).normalized;
     }
+    /*
     private void OnCollisionEnter(Collision collision)
     {
         if((collision.gameObject.layer != whatIsGround) && collision.gameObject.name != oldName)
@@ -332,4 +333,5 @@ public class Movement : MonoBehaviour
             oldName = collision.gameObject.name;
         }
     }
+    */
 }

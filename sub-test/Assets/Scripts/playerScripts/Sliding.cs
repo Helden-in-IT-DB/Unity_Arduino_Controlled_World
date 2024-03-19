@@ -18,6 +18,10 @@ public class Sliding : MonoBehaviour
     public float slideYScale;
     private float startYscale;
 
+    private Vector3 startScale;
+    private Vector3 slideScale;
+    private float lerpSpeed = 1f;
+
     [Header("input")]
     public KeyCode slideKey = KeyCode.C;
     private float horizontalInput;
@@ -30,7 +34,8 @@ public class Sliding : MonoBehaviour
         pm = GetComponent<Movement>();
 
         
-        startYscale = PlayerObj.localScale.y;
+        startScale = new Vector3 (transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        slideScale = new Vector3 (transform.localScale.x, slideYScale, transform.localScale.z);
     }
 
     // Update is called once per frame
@@ -59,7 +64,7 @@ public class Sliding : MonoBehaviour
     {
         pm.sliding	= true;                                                                 
 
-        PlayerObj.localScale = new Vector3(PlayerObj.lossyScale.x, slideYScale, PlayerObj.localScale.z);
+        PlayerObj.transform.localScale = Vector3.Lerp(slideScale, startScale, lerpSpeed * Time.deltaTime);
         rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         if(rb.velocity.y > -0.1f)
         {
@@ -74,7 +79,7 @@ public class Sliding : MonoBehaviour
     {
         pm.sliding = false;
 
-        PlayerObj.localScale = new Vector3(PlayerObj.lossyScale.x, startYscale, PlayerObj.localScale.z);
+        PlayerObj.localScale = Vector3.Lerp(startScale, slideScale, lerpSpeed * Time.deltaTime / 2);
 
     }
     private void SlidingMovement()

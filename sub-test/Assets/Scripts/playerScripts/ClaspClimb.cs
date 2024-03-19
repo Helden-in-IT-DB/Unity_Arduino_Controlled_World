@@ -268,7 +268,6 @@ public class ClaspClimb : MonoBehaviour
         }
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(forceToApply, ForceMode.Impulse);
-        Debug.Log(wallRight);
         exitingWall = true;
         exitingWallTimer = exitingWallTime;
         climbJumpsLeft--;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3372,6 +3372,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 263776603}
+    - target: {fileID: 2630679694173833996, guid: 09ba854497c28ea41bb1e03e3d4fa8bf, type: 3}
+      propertyPath: pickUpRange
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2630679694173833996, guid: 09ba854497c28ea41bb1e03e3d4fa8bf, type: 3}
       propertyPath: gunContainer
       value: 
@@ -12317,9 +12321,53 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 387617512105457083, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1125219679242555790, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166811010438470355, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2288749641641856963, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2732651281389047135, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2732651281389047135, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3917261516259694749, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3917261516259694749, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3917261516259694749, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 4021598926168314248, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: PlayerObj
+      value: 
+      objectReference: {fileID: 263776603}
     - target: {fileID: 4021598926168314248, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5838686341515461936, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6276916223199190168, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
       propertyPath: Meter
@@ -12377,9 +12425,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7674318330501251302, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787989459203869855, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7832899500578662940, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 9035296027643724134, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
       propertyPath: m_Name
       value: Bean
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035296027643724134, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2945540357922902940, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
@@ -12409,7 +12473,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -14278,6 +14342,10 @@ PrefabInstance:
     - target: {fileID: 2630679694173833996, guid: 8b065dea4332bd24b83c88651d6e4bfd, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2630679694173833996, guid: 8b065dea4332bd24b83c88651d6e4bfd, type: 3}
+      propertyPath: pickUpRange
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2630679694173833996, guid: 8b065dea4332bd24b83c88651d6e4bfd, type: 3}
       propertyPath: gunContainer

@@ -16,15 +16,18 @@ public class GunDrop : MonoBehaviour
 
     public bool equipped;
     public static bool slotFull;
+    private string objectName;
 
     [Header("detecttion")]
     public float pickUpRange;
     public float sphereCastRadius;
     private RaycastHit itemFrontHit;
     private bool itemFront;
+    private bool PickUpAble;
     // Start is called before the first frame update
     void Start()
     {
+        objectName = gameObject.name;
         //setup
         if (!equipped)
         {
@@ -47,7 +50,7 @@ public class GunDrop : MonoBehaviour
         ItemCheck();
         //check if player is in range and 'E' is pressed
         Vector3 distanceToPlayer = player.position - transform.position;
-        if(!equipped &&  itemFront && Input.GetKeyDown(KeyCode.E) && !slotFull)
+        if(!equipped &&  itemFront && PickUpAble && Input.GetKeyDown(KeyCode.E) && !slotFull)
         {
             PickUp();
         }
@@ -56,18 +59,27 @@ public class GunDrop : MonoBehaviour
         if (equipped && Input.GetKeyDown(KeyCode.Q))
         {
             Drop();
-        }
-       /* if (equipped)
+        }        
+        if (equipped)
         {
             transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.Euler(Vector3.zero);
-        } */
+        }
     }
     private void ItemCheck()
     {
-        if (itemFront = Physics.SphereCast(player.position, sphereCastRadius, fpsCam.forward, out itemFrontHit, pickUpRange, WhatIsItem))
+        itemFront = Physics.Raycast(fpsCam.position, fpsCam.forward, out itemFrontHit, pickUpRange, WhatIsItem);
+        if (itemFront)
         {
-            Debug.Log(itemFrontHit);
+           if (itemFrontHit.collider.name == objectName) 
+            {
+                //Debug.Log(itemFrontHit.collider.name);
+                PickUpAble = true;
+            }
+            else
+            {
+                PickUpAble = false;
+            }
         }
     }
     private void PickUp()
