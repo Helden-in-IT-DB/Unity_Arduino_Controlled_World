@@ -7,16 +7,23 @@ public class move : MonoBehaviour
     string msg;
     //makes a connecttion with the arduino. check device manager for which 'COM'
     SerialPort sp = new SerialPort("COM4", baudRate: 9600);
+
+    [Header("raycast")]
+    private RaycastHit rightWall;
+    private RaycastHit leftWall;
     
     //bool to check whether the arduino is working or plugged in
     public bool arduinoWorking;
+    private bool reachedMaxRight;
+    private bool reachedMaxLeft;
     public KeyCode left;
     public KeyCode forward;
     public KeyCode right;
     // Start is called before the first frame update
     void Start()
     {
-        InitArduino();
+      reachedMaxRight = true;
+      InitArduino();
     }
 
     void InitArduino()
@@ -41,21 +48,22 @@ public class move : MonoBehaviour
     {
         try 
         {
-            ArduinoInputReader();
-            switch (true)
-            {
-                case bool _ when msg == "Left" || (!arduinoWorking && Input.GetKey(left)):
-                    transform.Translate(Vector3.left * Time.deltaTime * 5);
-                    break;
-                case bool _ when msg == "Front"  || (!arduinoWorking && Input.GetKey(forward)):
-                    transform.Translate(Vector3.forward * Time.deltaTime * 5);
-                    break;
-                case bool _ when msg == "Right"  || (!arduinoWorking && Input.GetKey(right)):
-                    transform.Translate(Vector3.right * Time.deltaTime * 5);
-                    break;
-                default:
-                    break;
-            }
+          
+          ArduinoInputReader();
+          switch (true)
+          {
+              case bool _ when (msg == "Left" || (!arduinoWorking && Input.GetKey(left)) && !reachedMaxLeft):
+                  transform.Translate(Vector3.left * Time.deltaTime * 5);
+                  break;
+              case bool _ when msg == "Front"  || (!arduinoWorking && Input.GetKey(forward)):
+                  transform.Translate(Vector3.forward * Time.deltaTime * 5);
+                  break;
+              case bool _ when (msg == "Right"  || (!arduinoWorking && Input.GetKey(right)) && !reachedMaxRight):
+                  transform.Translate(Vector3.right * Time.deltaTime * 5);
+                  break;
+              default:
+                  break;
+          }
         }
         catch (Exception e)
         {
@@ -83,17 +91,21 @@ public class move : MonoBehaviour
       Debug.Log("enabling script");
       //this.enabled = true;
       InitArduino();
-    }
+    }    
     private void ArduinoInputReader()
     {
       if (arduinoWorking)
       {
-        if (arduinoWorking && msg != sp.ReadLine())
+        if (msg != sp.ReadLine())
             {
                 Debug.Log(message: sp.ReadLine());
                 msg = sp.ReadLine();
             }
       }
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+
     }
 }
 

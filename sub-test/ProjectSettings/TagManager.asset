@@ -6,6 +6,7 @@ TagManager:
   tags:
   - WhatIsGround
   - bullet
+  - button
   layers:
   - Default
   - TransparentFX
