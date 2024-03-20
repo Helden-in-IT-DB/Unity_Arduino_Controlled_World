@@ -60,7 +60,7 @@ public class move : MonoBehaviour
         catch (Exception e)
         {
             Debug.Log(message: "input read error: " + e);
-            InitArduino();       
+            InitArduino(); 
         }
     }
     void OnAplicationQuit()
