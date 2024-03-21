@@ -9,8 +9,7 @@ public class move : MonoBehaviour
     SerialPort sp = new SerialPort("COM4", baudRate: 9600);
 
     [Header("raycast")]
-    private RaycastHit rightWall;
-    private RaycastHit leftWall;
+    private RaycastHit rightWall, leftWall, frontWall, backWall;
     
     //bool to check whether the arduino is working or plugged in
     public bool arduinoWorking;
@@ -22,7 +21,6 @@ public class move : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      reachedMaxRight = true;
       InitArduino();
     }
 
@@ -52,13 +50,13 @@ public class move : MonoBehaviour
           ArduinoInputReader();
           switch (true)
           {
-              case bool _ when (msg == "Left" || (!arduinoWorking && Input.GetKey(left)) && !reachedMaxLeft):
+              case bool _ when (msg == "Left" || (!arduinoWorking && Input.GetKey(left))):
                   transform.Translate(Vector3.left * Time.deltaTime * 5);
                   break;
               case bool _ when msg == "Front"  || (!arduinoWorking && Input.GetKey(forward)):
                   transform.Translate(Vector3.forward * Time.deltaTime * 5);
                   break;
-              case bool _ when (msg == "Right"  || (!arduinoWorking && Input.GetKey(right)) && !reachedMaxRight):
+              case bool _ when (msg == "Right"  || (!arduinoWorking && Input.GetKey(right))):
                   transform.Translate(Vector3.right * Time.deltaTime * 5);
                   break;
               default:
@@ -70,6 +68,10 @@ public class move : MonoBehaviour
             Debug.Log(message: "input read error: " + e);
             InitArduino(); 
         }
+    }
+    void RayCheck()
+    {
+
     }
     void OnAplicationQuit()
     {
@@ -98,14 +100,14 @@ public class move : MonoBehaviour
       {
         if (msg != sp.ReadLine())
             {
-                Debug.Log(message: sp.ReadLine());
+                //Debug.Log(message: sp.ReadLine());
                 msg = sp.ReadLine();
             }
       }
     }
     void OnCollisionEnter(Collision collision)
     {
-
+      Debug.Log(message: $" colided");
     }
 }
 
@@ -113,7 +115,10 @@ public class move : MonoBehaviour
 
 
 /*version 2 with danni
-
+ if (collision.gameObject.tag == "EndPoint")
+      {
+        Debug.Log(message: "collision");
+      }
 void setup() {
   // put your setup code here, to run once:
   pinMode(4, INPUT_PULLUP);
