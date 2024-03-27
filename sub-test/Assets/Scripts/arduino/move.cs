@@ -13,8 +13,6 @@ public class move : MonoBehaviour
     
     //bool to check whether the arduino is working or plugged in
     public bool arduinoWorking;
-    private bool reachedMaxRight;
-    private bool reachedMaxLeft;
     public KeyCode left;
     public KeyCode forward;
     public KeyCode right;
@@ -115,10 +113,7 @@ public class move : MonoBehaviour
 
 
 /*version 2 with danni
- if (collision.gameObject.tag == "EndPoint")
-      {
-        Debug.Log(message: "collision");
-      }
+
 void setup() {
   // put your setup code here, to run once:
   pinMode(4, INPUT_PULLUP);
