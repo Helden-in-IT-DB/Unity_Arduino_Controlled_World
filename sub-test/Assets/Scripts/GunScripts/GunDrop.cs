@@ -27,6 +27,7 @@ public class GunDrop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        /*
         objectName = gameObject.name;
         //setup
         if (!equipped)
@@ -42,6 +43,7 @@ public class GunDrop : MonoBehaviour
             coll.isTrigger = true;
             slotFull = true;
         }
+        */
     }
     
     // Update is called once per frame
