@@ -8363,6 +8363,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4333507836982010, guid: acbdb13218a23b644b2a15c0a6fbd3f7, type: 3}
   m_PrefabInstance: {fileID: 465242737}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1207296920 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2288749641641856963, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+  m_PrefabInstance: {fileID: 1884375667}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1212958093
 GameObject:
   m_ObjectHideFlags: 0
@@ -12673,13 +12678,36 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2288749641641856963, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1884375687}
   m_SourcePrefab: {fileID: 100100000, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
 --- !u!54 &1884375668 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 4157736620201942031, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
   m_PrefabInstance: {fileID: 1884375667}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1884375687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207296920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65cf0c65bc4829d4b9f66aeed5545332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 263776603}
+  gunContainer: {fileID: 2003731940}
+  fpsCam: {fileID: 1549222685}
+  WhatIsItem:
+    serializedVersion: 2
+    m_Bits: 512
+  pickUpRange: 8
+  sphereCastRadius: 0.2
 --- !u!1 &1903875354
 GameObject:
   m_ObjectHideFlags: 0
