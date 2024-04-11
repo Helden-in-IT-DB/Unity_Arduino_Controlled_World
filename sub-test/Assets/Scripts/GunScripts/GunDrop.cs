@@ -29,6 +29,7 @@ public class GunDrop : MonoBehaviour
     {
         
         objectName = gameObject.name;
+        /* setup
         //setup
         if (!equipped)
         {
@@ -43,20 +44,24 @@ public class GunDrop : MonoBehaviour
             coll.isTrigger = true;
             slotFull = true;
         }
+        */
         
     }
     
     // Update is called once per frame
     void Update()
     {
+        /* 
+        //item pick up
         ItemCheck();
         //check if player is in range and 'E' is pressed
-        Vector3 distanceToPlayer = player.position - transform.position;
         if(!equipped &&  itemFront && PickUpAble && Input.GetKeyDown(KeyCode.E) && !slotFull)
         {
             PickUp();
         }
+        */
 
+        /* drop
         //drop if equiped and 'Q' is pressed
         if (equipped && Input.GetKeyDown(KeyCode.Q))
         {
@@ -67,7 +72,11 @@ public class GunDrop : MonoBehaviour
             transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.Euler(Vector3.zero);
         }
+        */
     }
+
+    /*
+    //item check and pickup
     private void ItemCheck()
     {
         itemFront = Physics.Raycast(fpsCam.position, fpsCam.forward, out itemFrontHit, pickUpRange, WhatIsItem);
@@ -101,6 +110,9 @@ public class GunDrop : MonoBehaviour
         //Enable script
         gunScript.enabled = true;
     }
+    */
+
+    /* item drop and momentum tranfer
     private void Drop()
     {
         equipped = false;
@@ -128,4 +140,5 @@ public class GunDrop : MonoBehaviour
         gunScript.DisableAmmoText();
         gunScript.enabled = false;
     }
+    */
 }
