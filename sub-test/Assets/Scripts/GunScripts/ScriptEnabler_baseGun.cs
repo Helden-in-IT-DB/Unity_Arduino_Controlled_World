@@ -35,6 +35,7 @@ public class ScriptEnabler_baseGun : MonoBehaviour
             gunScript.enabled = false;
             rb.isKinematic = false;
             coll.isTrigger = false;
+            callPickUp = true;
             this.enabled = false;
         }
         else if (equipped)
@@ -42,7 +43,7 @@ public class ScriptEnabler_baseGun : MonoBehaviour
             gunScript.enabled = true;
             rb.isKinematic = true;
             coll.isTrigger = true;
-            callPickUp = true;
+            callPickUp = false;
             slotFull = true;
         }
     }
@@ -50,7 +51,7 @@ public class ScriptEnabler_baseGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!callPickUp)
+        if (callPickUp)
         {
             FindComponents();
             PickUp();
