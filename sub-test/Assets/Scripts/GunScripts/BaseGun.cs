@@ -1,4 +1,6 @@
-
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 using TMPro;
 
@@ -26,14 +28,15 @@ public class BaseGun : MonoBehaviour
     int bulletsLeft, bulletsShot;
 
     //Recoil
-    public Rigidbody playerRb;
+    private Rigidbody playerRb;
     public float recoilForce;
 
     //bools
     bool shooting, readyToShoot, reloading;
 
     //Reference
-    public Camera fpsCam;
+    private Camera fpsCam;
+    private Transform camHolder;
     public Transform attackPoint;
 
     //Graphics
@@ -48,12 +51,19 @@ public class BaseGun : MonoBehaviour
         //make sure magazine is full
         bulletsLeft = magazineSize;
         readyToShoot = true;
+        
     }
-
     private void Update()
     {
         MyInput();
-
+        if (playerRb == null || playerRb != transform.parent.parent.parent.GetComponent<Rigidbody>())
+        {
+            //Debug.Log("changing playerRb and fpscam values");
+            //sets up the parent and playerRB values
+            camHolder = transform.parent.parent;  
+            fpsCam = camHolder.GetComponent<Camera>();
+            playerRb = transform.parent.parent.parent.GetComponent<Rigidbody>();
+        }
         //Set ammo display, if it exists :D
         if (ammunitionDisplay != null)
             ammunitionDisplay.SetText(bulletsLeft / bulletsPerTap + " / " + magazineSize / bulletsPerTap);
