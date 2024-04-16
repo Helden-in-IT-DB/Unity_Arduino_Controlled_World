@@ -16,6 +16,7 @@ public class Test : MonoBehaviour
     public float sphereCastRadius;
     private RaycastHit itemFrontHit;
     private bool itemFront;
+    private bool HandsfullCheck;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +47,7 @@ public class Test : MonoBehaviour
 
     void CheckAndToggleScript()
     {
-        if (Object != null && Input.GetKeyDown(KeyCode.E))
+        if (Object != null && Input.GetKeyDown(KeyCode.E) && !HandsfullCheck)
         {
             // Get all MonoBehaviour components attached to the Object
             MonoBehaviour[] scripts = Object.GetComponentsInChildren<MonoBehaviour>();
@@ -61,6 +62,7 @@ public class Test : MonoBehaviour
                     {
                         // Enable the script
                         Object.transform.SetParent(gunContainer);
+                        HandsfullCheck = true;
                         scripts[i].enabled = true;
                         //Debug.Log("Script enabled on " + Object.name);
                     }
@@ -72,5 +74,6 @@ public class Test : MonoBehaviour
                 Debug.Log("No scripts found on " + scripts.Length);
             }
         }
+        if (HandsfullCheck && Input.GetKey(KeyCode.Q)) HandsfullCheck = false;
     }
 }

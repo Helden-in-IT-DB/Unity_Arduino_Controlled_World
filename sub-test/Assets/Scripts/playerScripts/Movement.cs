@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEditor.Timeline;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
@@ -21,6 +23,8 @@ public class Movement : MonoBehaviour
     public float maxSlopeAngle;
     private RaycastHit slopehit;
     private bool exitingSlope;
+
+    private Playercontrols playerControls;
 
     //speed and drag for movement
     [Header("Moverment Spped")]
