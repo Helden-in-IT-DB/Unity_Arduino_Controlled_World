@@ -24,8 +24,6 @@ public class Movement : MonoBehaviour
     private RaycastHit slopehit;
     private bool exitingSlope;
 
-    private Playercontrols playerControls;
-
     //speed and drag for movement
     [Header("Moverment Spped")]
     private float moveSpeed;

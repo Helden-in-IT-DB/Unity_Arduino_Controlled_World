@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8139,8 +8139,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1022133060}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.40821788, y: 0.23456968, z: -0.10938163, w: 0.8754261}
+  m_LocalPosition: {x: 0, y: -1.928363, z: 2.2981334}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8151,7 +8151,7 @@ Transform:
   - {fileID: 759776319}
   - {fileID: 1463701813}
   - {fileID: 1571927596}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1216019010}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1136770514 stripped
 Transform:
@@ -8942,7 +8942,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1022133061}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1236380956
@@ -12757,6 +12758,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1884375692}
     - target: {fileID: 6834727942914902005, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834727942914902005, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
       propertyPath: stateTeller
       value: 
       objectReference: {fileID: 1808907709}
@@ -12814,6 +12819,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2288749641641856963, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1884375693}
+    - targetCorrespondingSourceObject: {fileID: 2288749641641856963, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1884375699}
   m_SourcePrefab: {fileID: 100100000, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
 --- !u!114 &1884375687
 MonoBehaviour:
@@ -12853,7 +12861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: d5943ffe636fc5d42bff79a3c1fbf3b9, type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 1
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -12883,25 +12891,35 @@ MonoBehaviour:
     m_ActionName: ground/slide[/Keyboard/c]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: c763bb48-a9da-4d15-bc18-1dc8da630e28
-    m_ActionName: interactable/New action
+    m_ActionId: 872c6ae7-616b-4681-87a2-76fd35c4382a
+    m_ActionName: player/pickUp[/Keyboard/e]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 9063585b-c8fe-4fba-ae2e-1a5ec695e4d6
-    m_ActionName: gun/shoot[/Mouse/leftButton]
+    m_ActionId: bca96be1-3022-4558-87c6-c8142e057f76
+    m_ActionName: player/New action
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 35960d94-7cd1-4366-a71a-33dd7df2295d
-    m_ActionName: gun/reload[/Keyboard/r]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 29831715-60f7-48d4-8465-54f8b9d46599
-    m_ActionName: gun/drop[/Keyboard/q]
+    m_ActionId: 6764546c-5c15-4b10-9ff4-3ffbee317218
+    m_ActionName: player/clasp[/Keyboard/ctrl]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: PlayerControls
-  m_DefaultActionMap: ground
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1884375699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207296920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b68205d52b9694191052f489538537, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  orientation: {fileID: 1990662503}
 --- !u!1 &1903875354
 GameObject:
   m_ObjectHideFlags: 0
@@ -13773,6 +13791,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &1990662503 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2581290932410203960, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+  m_PrefabInstance: {fileID: 1884375667}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1995653975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14865,7 +14888,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1216019010}
-  - {fileID: 1022133061}
   - {fileID: 1884375667}
   - {fileID: 2059091454}
   - {fileID: 1995653975}

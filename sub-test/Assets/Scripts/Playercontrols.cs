@@ -24,21 +24,21 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
     ""name"": ""Playercontrols"",
     ""maps"": [
         {
-            ""name"": ""ground"",
+            ""name"": ""Player"",
             ""id"": ""f461c4e5-c770-4e98-98d3-766d520d58d7"",
             ""actions"": [
                 {
-                    ""name"": ""move"",
-                    ""type"": ""Value"",
+                    ""name"": ""Move"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""8a62ae01-b743-4f51-8bf5-37c3cbe109b5"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Vector3"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""jump"",
-                    ""type"": ""Value"",
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
                     ""id"": ""0e3a5adf-8645-4c19-9a67-7efaf3efdabe"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -46,7 +46,7 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""crouch"",
+                    ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""cd67a508-08bc-4265-9378-ddfabfb12ecb"",
                     ""expectedControlType"": ""Button"",
@@ -55,225 +55,178 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""slide"",
+                    ""name"": ""Clasp"",
+                    ""type"": ""Button"",
+                    ""id"": ""6764546c-5c15-4b10-9ff4-3ffbee317218"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Slide"",
                     ""type"": ""Button"",
                     ""id"": ""77192150-384b-4c1c-a2e5-b14a288e6cb1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PickUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""872c6ae7-616b-4681-87a2-76fd35c4382a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Drop"",
+                    ""type"": ""Button"",
+                    ""id"": ""bca96be1-3022-4558-87c6-c8142e057f76"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": ""WASD"",
-                    ""id"": ""a9f6527c-e7f5-46e4-bb38-6d3098d81bc4"",
-                    ""path"": ""2DVector"",
+                    ""name"": """",
+                    ""id"": ""d7904e45-a22e-468b-8651-baaa56bfc4fa"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""move"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""9b6f18b0-ac70-47bb-a4b1-c80b551d9ebc"",
+                    ""path"": ""3DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""07caf2ec-eb4a-49d2-92fe-2b9286cddd04"",
+                    ""id"": ""e2c1f289-fcde-402c-a226-4b41e5e1c26d"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlayerControls"",
-                    ""action"": ""move"",
+                    ""groups"": """",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""7995b8b1-1f44-4b27-afee-3fb81cf87107"",
+                    ""id"": ""6fb4ce4d-58d9-418e-830f-bac16ece646c"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlayerControls"",
-                    ""action"": ""move"",
+                    ""groups"": """",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""3d96c2d7-15f0-44c6-b67d-0df081c9522b"",
+                    ""id"": ""850658b4-eeda-4493-886b-aa5c921de7e8"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlayerControls"",
-                    ""action"": ""move"",
+                    ""groups"": """",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""6ae265d5-7d12-4ace-a8d3-707e95525975"",
+                    ""id"": ""b27f9c3d-6489-4705-b653-3c47bc79c568"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlayerControls"",
-                    ""action"": ""move"",
+                    ""groups"": """",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
-                    ""id"": ""eaff8d82-7ec3-4049-aee8-d038628df48c"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""PlayerControls"",
-                    ""action"": ""jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""bc0c9933-9014-411c-b6ef-3fed01c79232"",
-                    ""path"": ""<Keyboard>/leftAlt"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""PlayerControls"",
-                    ""action"": ""crouch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e4047f3c-ebbb-4f00-b304-ef7f506a3df8"",
+                    ""id"": ""dca0cb1b-4a0e-42ed-a29e-b9a9ad904f5a"",
                     ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlayerControls"",
-                    ""action"": ""slide"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""interactable"",
-            ""id"": ""2640ea27-e37c-462d-af77-3e214a645cd9"",
-            ""actions"": [
-                {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
-                    ""id"": ""c763bb48-a9da-4d15-bc18-1dc8da630e28"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""c3419e05-33a9-4cfc-966d-9c35db412bf3"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""PlayerControls"",
-                    ""action"": ""New action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""gun"",
-            ""id"": ""a5cdd5e3-be6f-4fae-b4a8-afecbb8d2491"",
-            ""actions"": [
-                {
-                    ""name"": ""shoot"",
-                    ""type"": ""Button"",
-                    ""id"": ""9063585b-c8fe-4fba-ae2e-1a5ec695e4d6"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""reload"",
-                    ""type"": ""Button"",
-                    ""id"": ""35960d94-7cd1-4366-a71a-33dd7df2295d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""drop"",
-                    ""type"": ""Button"",
-                    ""id"": ""29831715-60f7-48d4-8465-54f8b9d46599"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""13f65313-1850-4d59-a40b-9a7d902ef181"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""PlayerControls"",
-                    ""action"": ""shoot"",
+                    ""groups"": """",
+                    ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""80e60d12-938a-476f-b8a4-587938e7f21b"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""id"": ""4936c349-31ea-4af4-85bc-1d5bf3438a3d"",
+                    ""path"": ""<Keyboard>/ctrl"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlayerControls"",
-                    ""action"": ""reload"",
+                    ""groups"": """",
+                    ""action"": ""Clasp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""eb3a6eef-00ee-409c-8067-b3b5c3eea05f"",
+                    ""id"": ""ce3b5a9b-9e48-4f08-8155-1fbd87933cde"",
+                    ""path"": ""<Keyboard>/alt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Slide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3a4584d2-db48-45e2-b1ea-d4b5ffbebe98"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PickUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8db466ee-c01a-42a0-8f93-a966977f0215"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PlayerControls"",
-                    ""action"": ""drop"",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
             ]
         }
     ],
-    ""controlSchemes"": [
-        {
-            ""name"": ""PlayerControls"",
-            ""bindingGroup"": ""PlayerControls"",
-            ""devices"": []
-        }
-    ]
+    ""controlSchemes"": []
 }");
-        // ground
-        m_ground = asset.FindActionMap("ground", throwIfNotFound: true);
-        m_ground_move = m_ground.FindAction("move", throwIfNotFound: true);
-        m_ground_jump = m_ground.FindAction("jump", throwIfNotFound: true);
-        m_ground_crouch = m_ground.FindAction("crouch", throwIfNotFound: true);
-        m_ground_slide = m_ground.FindAction("slide", throwIfNotFound: true);
-        // interactable
-        m_interactable = asset.FindActionMap("interactable", throwIfNotFound: true);
-        m_interactable_Newaction = m_interactable.FindAction("New action", throwIfNotFound: true);
-        // gun
-        m_gun = asset.FindActionMap("gun", throwIfNotFound: true);
-        m_gun_shoot = m_gun.FindAction("shoot", throwIfNotFound: true);
-        m_gun_reload = m_gun.FindAction("reload", throwIfNotFound: true);
-        m_gun_drop = m_gun.FindAction("drop", throwIfNotFound: true);
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
+        m_Player_Clasp = m_Player.FindAction("Clasp", throwIfNotFound: true);
+        m_Player_Slide = m_Player.FindAction("Slide", throwIfNotFound: true);
+        m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
+        m_Player_Drop = m_Player.FindAction("Drop", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -332,207 +285,107 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // ground
-    private readonly InputActionMap m_ground;
-    private List<IGroundActions> m_GroundActionsCallbackInterfaces = new List<IGroundActions>();
-    private readonly InputAction m_ground_move;
-    private readonly InputAction m_ground_jump;
-    private readonly InputAction m_ground_crouch;
-    private readonly InputAction m_ground_slide;
-    public struct GroundActions
+    // Player
+    private readonly InputActionMap m_Player;
+    private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
+    private readonly InputAction m_Player_Move;
+    private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Crouch;
+    private readonly InputAction m_Player_Clasp;
+    private readonly InputAction m_Player_Slide;
+    private readonly InputAction m_Player_PickUp;
+    private readonly InputAction m_Player_Drop;
+    public struct PlayerActions
     {
         private @Playercontrols m_Wrapper;
-        public GroundActions(@Playercontrols wrapper) { m_Wrapper = wrapper; }
-        public InputAction @move => m_Wrapper.m_ground_move;
-        public InputAction @jump => m_Wrapper.m_ground_jump;
-        public InputAction @crouch => m_Wrapper.m_ground_crouch;
-        public InputAction @slide => m_Wrapper.m_ground_slide;
-        public InputActionMap Get() { return m_Wrapper.m_ground; }
+        public PlayerActions(@Playercontrols wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Player_Move;
+        public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
+        public InputAction @Clasp => m_Wrapper.m_Player_Clasp;
+        public InputAction @Slide => m_Wrapper.m_Player_Slide;
+        public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
+        public InputAction @Drop => m_Wrapper.m_Player_Drop;
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(GroundActions set) { return set.Get(); }
-        public void AddCallbacks(IGroundActions instance)
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerActions instance)
         {
-            if (instance == null || m_Wrapper.m_GroundActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_GroundActionsCallbackInterfaces.Add(instance);
-            @move.started += instance.OnMove;
-            @move.performed += instance.OnMove;
-            @move.canceled += instance.OnMove;
-            @jump.started += instance.OnJump;
-            @jump.performed += instance.OnJump;
-            @jump.canceled += instance.OnJump;
-            @crouch.started += instance.OnCrouch;
-            @crouch.performed += instance.OnCrouch;
-            @crouch.canceled += instance.OnCrouch;
-            @slide.started += instance.OnSlide;
-            @slide.performed += instance.OnSlide;
-            @slide.canceled += instance.OnSlide;
+            if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+            @Crouch.started += instance.OnCrouch;
+            @Crouch.performed += instance.OnCrouch;
+            @Crouch.canceled += instance.OnCrouch;
+            @Clasp.started += instance.OnClasp;
+            @Clasp.performed += instance.OnClasp;
+            @Clasp.canceled += instance.OnClasp;
+            @Slide.started += instance.OnSlide;
+            @Slide.performed += instance.OnSlide;
+            @Slide.canceled += instance.OnSlide;
+            @PickUp.started += instance.OnPickUp;
+            @PickUp.performed += instance.OnPickUp;
+            @PickUp.canceled += instance.OnPickUp;
+            @Drop.started += instance.OnDrop;
+            @Drop.performed += instance.OnDrop;
+            @Drop.canceled += instance.OnDrop;
         }
 
-        private void UnregisterCallbacks(IGroundActions instance)
+        private void UnregisterCallbacks(IPlayerActions instance)
         {
-            @move.started -= instance.OnMove;
-            @move.performed -= instance.OnMove;
-            @move.canceled -= instance.OnMove;
-            @jump.started -= instance.OnJump;
-            @jump.performed -= instance.OnJump;
-            @jump.canceled -= instance.OnJump;
-            @crouch.started -= instance.OnCrouch;
-            @crouch.performed -= instance.OnCrouch;
-            @crouch.canceled -= instance.OnCrouch;
-            @slide.started -= instance.OnSlide;
-            @slide.performed -= instance.OnSlide;
-            @slide.canceled -= instance.OnSlide;
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+            @Crouch.started -= instance.OnCrouch;
+            @Crouch.performed -= instance.OnCrouch;
+            @Crouch.canceled -= instance.OnCrouch;
+            @Clasp.started -= instance.OnClasp;
+            @Clasp.performed -= instance.OnClasp;
+            @Clasp.canceled -= instance.OnClasp;
+            @Slide.started -= instance.OnSlide;
+            @Slide.performed -= instance.OnSlide;
+            @Slide.canceled -= instance.OnSlide;
+            @PickUp.started -= instance.OnPickUp;
+            @PickUp.performed -= instance.OnPickUp;
+            @PickUp.canceled -= instance.OnPickUp;
+            @Drop.started -= instance.OnDrop;
+            @Drop.performed -= instance.OnDrop;
+            @Drop.canceled -= instance.OnDrop;
         }
 
-        public void RemoveCallbacks(IGroundActions instance)
+        public void RemoveCallbacks(IPlayerActions instance)
         {
-            if (m_Wrapper.m_GroundActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IGroundActions instance)
+        public void SetCallbacks(IPlayerActions instance)
         {
-            foreach (var item in m_Wrapper.m_GroundActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_GroundActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public GroundActions @ground => new GroundActions(this);
-
-    // interactable
-    private readonly InputActionMap m_interactable;
-    private List<IInteractableActions> m_InteractableActionsCallbackInterfaces = new List<IInteractableActions>();
-    private readonly InputAction m_interactable_Newaction;
-    public struct InteractableActions
-    {
-        private @Playercontrols m_Wrapper;
-        public InteractableActions(@Playercontrols wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_interactable_Newaction;
-        public InputActionMap Get() { return m_Wrapper.m_interactable; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(InteractableActions set) { return set.Get(); }
-        public void AddCallbacks(IInteractableActions instance)
-        {
-            if (instance == null || m_Wrapper.m_InteractableActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_InteractableActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
-        }
-
-        private void UnregisterCallbacks(IInteractableActions instance)
-        {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
-        }
-
-        public void RemoveCallbacks(IInteractableActions instance)
-        {
-            if (m_Wrapper.m_InteractableActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IInteractableActions instance)
-        {
-            foreach (var item in m_Wrapper.m_InteractableActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_InteractableActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public InteractableActions @interactable => new InteractableActions(this);
-
-    // gun
-    private readonly InputActionMap m_gun;
-    private List<IGunActions> m_GunActionsCallbackInterfaces = new List<IGunActions>();
-    private readonly InputAction m_gun_shoot;
-    private readonly InputAction m_gun_reload;
-    private readonly InputAction m_gun_drop;
-    public struct GunActions
-    {
-        private @Playercontrols m_Wrapper;
-        public GunActions(@Playercontrols wrapper) { m_Wrapper = wrapper; }
-        public InputAction @shoot => m_Wrapper.m_gun_shoot;
-        public InputAction @reload => m_Wrapper.m_gun_reload;
-        public InputAction @drop => m_Wrapper.m_gun_drop;
-        public InputActionMap Get() { return m_Wrapper.m_gun; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(GunActions set) { return set.Get(); }
-        public void AddCallbacks(IGunActions instance)
-        {
-            if (instance == null || m_Wrapper.m_GunActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_GunActionsCallbackInterfaces.Add(instance);
-            @shoot.started += instance.OnShoot;
-            @shoot.performed += instance.OnShoot;
-            @shoot.canceled += instance.OnShoot;
-            @reload.started += instance.OnReload;
-            @reload.performed += instance.OnReload;
-            @reload.canceled += instance.OnReload;
-            @drop.started += instance.OnDrop;
-            @drop.performed += instance.OnDrop;
-            @drop.canceled += instance.OnDrop;
-        }
-
-        private void UnregisterCallbacks(IGunActions instance)
-        {
-            @shoot.started -= instance.OnShoot;
-            @shoot.performed -= instance.OnShoot;
-            @shoot.canceled -= instance.OnShoot;
-            @reload.started -= instance.OnReload;
-            @reload.performed -= instance.OnReload;
-            @reload.canceled -= instance.OnReload;
-            @drop.started -= instance.OnDrop;
-            @drop.performed -= instance.OnDrop;
-            @drop.canceled -= instance.OnDrop;
-        }
-
-        public void RemoveCallbacks(IGunActions instance)
-        {
-            if (m_Wrapper.m_GunActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IGunActions instance)
-        {
-            foreach (var item in m_Wrapper.m_GunActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_GunActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public GunActions @gun => new GunActions(this);
-    private int m_PlayerControlsSchemeIndex = -1;
-    public InputControlScheme PlayerControlsScheme
-    {
-        get
-        {
-            if (m_PlayerControlsSchemeIndex == -1) m_PlayerControlsSchemeIndex = asset.FindControlSchemeIndex("PlayerControls");
-            return asset.controlSchemes[m_PlayerControlsSchemeIndex];
-        }
-    }
-    public interface IGroundActions
+    public PlayerActions @Player => new PlayerActions(this);
+    public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
+        void OnClasp(InputAction.CallbackContext context);
         void OnSlide(InputAction.CallbackContext context);
-    }
-    public interface IInteractableActions
-    {
-        void OnNewaction(InputAction.CallbackContext context);
-    }
-    public interface IGunActions
-    {
-        void OnShoot(InputAction.CallbackContext context);
-        void OnReload(InputAction.CallbackContext context);
+        void OnPickUp(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
     }
 }
