@@ -9,6 +9,11 @@ public class testMove : MonoBehaviour
     public Rigidbody rb;
     public Transform orientation;
     private Vector3 moveDirection;
+    private Vector3 move;
+    private float moveSpeed = 8;
+    private bool moving;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,19 +22,32 @@ public class testMove : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-          
+        if(moving)
+        {
+        moveDirection = orientation.forward * move.y + orientation.right * move.x;
+        rb.velocity = moveDirection * moveSpeed;
+        rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        }
+
     }
     private void OnJump()
     {
-        Debug.Log("jump");
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        rb.AddForce(transform.up * moveSpeed, ForceMode.Impulse);
     }
     private void OnMove(InputValue inputValue)
     {
-        moveDirection = orientation.forward * inputValue.Get<Vector3>().y + orientation.right * inputValue.Get<Vector3>().x;
-        rb.velocity = moveDirection * 8f;
-        Debug.Log("move");
+        move = inputValue.Get<Vector3>();
+        moving = true;
+        //moveDirection = orientation.forward * inputValue.Get<Vector3>().y + orientation.right * inputValue.Get<Vector3>().x;
+
+        Debug.Log($"move: {move}");
+        if (move == new Vector3(0f, 0f, 0f))
+        {
+            moving = false;
+        }
     }
 
  }
