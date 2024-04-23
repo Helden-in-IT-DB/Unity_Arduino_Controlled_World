@@ -45,6 +45,7 @@ public class Movement : MonoBehaviour
    public float jumpCooldown;
    public float airMultiplier;
    bool readyToJump;
+   bool jumping;
 
     [Header("Crouching")]
     public float crouchSpeed;
@@ -69,10 +70,10 @@ public class Movement : MonoBehaviour
     
     //movement
     public Transform orientation;
-    float horizontalInput;
-    float verticalInput;
-    Vector3 moveDirection;
-    Rigidbody rb;
+    private float horizontalInput;
+    private float verticalInput;
+    private Vector3 moveDirection;
+    private Rigidbody rb;
 
     //state handler
     public MovementState state;
@@ -125,18 +126,8 @@ public class Movement : MonoBehaviour
 
     private void MyInput()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        if (jumping) OnJump();
 
-        //when to jump
-        if(Input.GetKey(jumpKey) && readyToJump && grounded)
-        {
-            readyToJump = false;
-
-            Jump();
-
-            Invoke(nameof(ResetJump),jumpCooldown);
-        }
 
         //when to crouch
         if(Input.GetKeyDown(crouchKey))
@@ -249,7 +240,8 @@ public class Movement : MonoBehaviour
         moveSpeed = desiredMoveSpeed;
     }
     // like for lerp reference : https://docs.unity3d.com/ScriptReference/Mathf.Lerp.html
-    private void MovePlayer()
+    
+        private void MovePlayer()
     {
 
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
@@ -274,6 +266,13 @@ public class Movement : MonoBehaviour
             //turns gravity off when on slope so you don't slide off
             rb.useGravity = !OnSlope();
     }
+    
+    private void OnMove(InputValue inputValue)
+    {
+        horizontalInput = inputValue.Get<Vector3>().x;
+        verticalInput = inputValue.Get<Vector3>().y;
+    }
+
     private void SpeedControl()
     {
         if(OnSlope())
@@ -297,12 +296,25 @@ public class Movement : MonoBehaviour
         }
 
     }
-    private void Jump()
+    private void OnJump()
     {
-        exitingSlope = true;
+        //when to jump
+        if(readyToJump && grounded)
+        {
+            readyToJump = false;
+            exitingSlope = true;
+            jumping = true;
 
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
+            Invoke(nameof(ResetJump),jumpCooldown);
+        }
+
+    }
+    private void OnReleaseJump()
+    {
+        jumping = false;
     }
     private void ResetJump()
     {

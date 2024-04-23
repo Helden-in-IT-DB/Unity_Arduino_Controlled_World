@@ -75,9 +75,9 @@ public class BaseGun : MonoBehaviour
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
         //Reloading 
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) Reload();
+        //if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) Reload();
         //Reload automatically when trying to shoot without ammo
-        if (readyToShoot && shooting && !reloading && bulletsLeft <= 0) Reload();
+        if (readyToShoot && shooting && !reloading && bulletsLeft <= 0) OnReload();
 
         //Shooting
         if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
@@ -151,7 +151,7 @@ public class BaseGun : MonoBehaviour
         allowInvoke = true;
     }
 
-    private void Reload()
+    private void OnReload()
     {
         reloading = true;
         Invoke("ReloadFinished", reloadTime); //Invoke ReloadFinished function with your reloadTime as delay

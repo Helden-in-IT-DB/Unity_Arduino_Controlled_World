@@ -27,7 +27,6 @@ public class Test : MonoBehaviour
     void Update()
     {
      ItemCheck();
-     CheckAndToggleScript();
     }
 
     private void ItemCheck()
@@ -44,10 +43,9 @@ public class Test : MonoBehaviour
             Object = null;
         }
     }
-
-    void CheckAndToggleScript()
+    private void OnPickUp()
     {
-        if (Object != null && Input.GetKeyDown(KeyCode.E) && !HandsfullCheck)
+        if (Object != null && !HandsfullCheck)
         {
             // Get all MonoBehaviour components attached to the Object
             MonoBehaviour[] scripts = Object.GetComponentsInChildren<MonoBehaviour>();
@@ -74,6 +72,10 @@ public class Test : MonoBehaviour
                 Debug.Log("No scripts found on " + scripts.Length);
             }
         }
-        if (HandsfullCheck && Input.GetKey(KeyCode.Q)) HandsfullCheck = false;
     }
+    private void OnDrop()
+    {
+        HandsfullCheck = false;
+    }
+
 }

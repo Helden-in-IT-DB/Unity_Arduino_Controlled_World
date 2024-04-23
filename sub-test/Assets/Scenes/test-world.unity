@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12759,7 +12759,7 @@ PrefabInstance:
       objectReference: {fileID: 1884375692}
     - target: {fileID: 6834727942914902005, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6834727942914902005, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
       propertyPath: stateTeller
@@ -12819,9 +12819,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2288749641641856963, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1884375693}
-    - targetCorrespondingSourceObject: {fileID: 2288749641641856963, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1884375699}
   m_SourcePrefab: {fileID: 100100000, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
 --- !u!114 &1884375687
 MonoBehaviour:
@@ -12906,20 +12903,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1884375699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1207296920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69b68205d52b9694191052f489538537, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  orientation: {fileID: 1990662503}
 --- !u!1 &1903875354
 GameObject:
   m_ObjectHideFlags: 0
@@ -13791,11 +13774,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!4 &1990662503 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2581290932410203960, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
-  m_PrefabInstance: {fileID: 1884375667}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1995653975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14772,6 +14750,10 @@ PrefabInstance:
     - target: {fileID: 253631625858280319, guid: 8b065dea4332bd24b83c88651d6e4bfd, type: 3}
       propertyPath: m_Name
       value: gunPlaceHolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062281262160140605, guid: 8b065dea4332bd24b83c88651d6e4bfd, type: 3}
+      propertyPath: allowButtonHold
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6062281262160140605, guid: 8b065dea4332bd24b83c88651d6e4bfd, type: 3}
       propertyPath: ammunitionDisplay

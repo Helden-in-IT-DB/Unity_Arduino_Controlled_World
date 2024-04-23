@@ -31,15 +31,6 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                     ""name"": ""Move"",
                     ""type"": ""PassThrough"",
                     ""id"": ""8a62ae01-b743-4f51-8bf5-37c3cbe109b5"",
-                    ""expectedControlType"": ""Vector3"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Jump"",
-                    ""type"": ""Button"",
-                    ""id"": ""0e3a5adf-8645-4c19-9a67-7efaf3efdabe"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -51,7 +42,7 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                     ""id"": ""cd67a508-08bc-4265-9378-ddfabfb12ecb"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -89,20 +80,45 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""0c753362-258b-4c26-9c02-aa310c018f12"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""ff1fd00d-9514-44f2-84cd-4701210e1cec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""0e3a5adf-8645-4c19-9a67-7efaf3efdabe"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ReleaseJump"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd900740-2f9e-4cf6-a5be-378f02f9ef20"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""d7904e45-a22e-468b-8651-baaa56bfc4fa"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": ""WASD"",
                     ""id"": ""9b6f18b0-ac70-47bb-a4b1-c80b551d9ebc"",
@@ -212,6 +228,50 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                     ""action"": ""Drop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db12a6a7-ad69-4c41-8acd-9baae943ddf7"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e1a9055e-e61e-4d0a-8068-7d86cb7dd837"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d7904e45-a22e-468b-8651-baaa56bfc4fa"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""292509f3-c05c-40c1-b71e-a99fddd4b48c"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReleaseJump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -221,12 +281,15 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_Clasp = m_Player.FindAction("Clasp", throwIfNotFound: true);
         m_Player_Slide = m_Player.FindAction("Slide", throwIfNotFound: true);
         m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
         m_Player_Drop = m_Player.FindAction("Drop", throwIfNotFound: true);
+        m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
+        m_Player_shoot = m_Player.FindAction("shoot", throwIfNotFound: true);
+        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_ReleaseJump = m_Player.FindAction("ReleaseJump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -289,23 +352,29 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_Clasp;
     private readonly InputAction m_Player_Slide;
     private readonly InputAction m_Player_PickUp;
     private readonly InputAction m_Player_Drop;
+    private readonly InputAction m_Player_Reload;
+    private readonly InputAction m_Player_shoot;
+    private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_ReleaseJump;
     public struct PlayerActions
     {
         private @Playercontrols m_Wrapper;
         public PlayerActions(@Playercontrols wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @Clasp => m_Wrapper.m_Player_Clasp;
         public InputAction @Slide => m_Wrapper.m_Player_Slide;
         public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
         public InputAction @Drop => m_Wrapper.m_Player_Drop;
+        public InputAction @Reload => m_Wrapper.m_Player_Reload;
+        public InputAction @shoot => m_Wrapper.m_Player_shoot;
+        public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @ReleaseJump => m_Wrapper.m_Player_ReleaseJump;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -318,9 +387,6 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Jump.started += instance.OnJump;
-            @Jump.performed += instance.OnJump;
-            @Jump.canceled += instance.OnJump;
             @Crouch.started += instance.OnCrouch;
             @Crouch.performed += instance.OnCrouch;
             @Crouch.canceled += instance.OnCrouch;
@@ -336,6 +402,18 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
             @Drop.started += instance.OnDrop;
             @Drop.performed += instance.OnDrop;
             @Drop.canceled += instance.OnDrop;
+            @Reload.started += instance.OnReload;
+            @Reload.performed += instance.OnReload;
+            @Reload.canceled += instance.OnReload;
+            @shoot.started += instance.OnShoot;
+            @shoot.performed += instance.OnShoot;
+            @shoot.canceled += instance.OnShoot;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+            @ReleaseJump.started += instance.OnReleaseJump;
+            @ReleaseJump.performed += instance.OnReleaseJump;
+            @ReleaseJump.canceled += instance.OnReleaseJump;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -343,9 +421,6 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Jump.started -= instance.OnJump;
-            @Jump.performed -= instance.OnJump;
-            @Jump.canceled -= instance.OnJump;
             @Crouch.started -= instance.OnCrouch;
             @Crouch.performed -= instance.OnCrouch;
             @Crouch.canceled -= instance.OnCrouch;
@@ -361,6 +436,18 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
             @Drop.started -= instance.OnDrop;
             @Drop.performed -= instance.OnDrop;
             @Drop.canceled -= instance.OnDrop;
+            @Reload.started -= instance.OnReload;
+            @Reload.performed -= instance.OnReload;
+            @Reload.canceled -= instance.OnReload;
+            @shoot.started -= instance.OnShoot;
+            @shoot.performed -= instance.OnShoot;
+            @shoot.canceled -= instance.OnShoot;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+            @ReleaseJump.started -= instance.OnReleaseJump;
+            @ReleaseJump.performed -= instance.OnReleaseJump;
+            @ReleaseJump.canceled -= instance.OnReleaseJump;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -381,11 +468,14 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnClasp(InputAction.CallbackContext context);
         void OnSlide(InputAction.CallbackContext context);
         void OnPickUp(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnReleaseJump(InputAction.CallbackContext context);
     }
 }

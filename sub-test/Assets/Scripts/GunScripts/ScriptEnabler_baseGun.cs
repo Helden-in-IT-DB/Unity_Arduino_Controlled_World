@@ -57,10 +57,12 @@ public class ScriptEnabler_baseGun : MonoBehaviour
             PickUp();
         }
         //drop if equiped and 'Q' is pressed
+        /*
         if (equipped && Input.GetKeyDown(KeyCode.Q))
         {
             Drop();
         }
+        */
         if (equipped)
         {
             transform.localPosition = Vector3.zero;
@@ -90,7 +92,7 @@ public class ScriptEnabler_baseGun : MonoBehaviour
         //Enable script
         gunScript.enabled = true;
     }
-    private void Drop()
+    private void OnDrop()
     {
         equipped = false;
         slotFull = false;

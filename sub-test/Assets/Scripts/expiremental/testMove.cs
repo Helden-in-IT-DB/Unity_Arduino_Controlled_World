@@ -24,19 +24,14 @@ public class testMove : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(moving)
-        {
+        
         moveDirection = orientation.forward * move.y + orientation.right * move.x;
         rb.velocity = moveDirection * moveSpeed;
         rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-        }
+        
 
     }
-    private void OnJump()
-    {
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        rb.AddForce(transform.up * moveSpeed, ForceMode.Impulse);
-    }
+
     private void OnMove(InputValue inputValue)
     {
         move = inputValue.Get<Vector3>();
