@@ -71,8 +71,8 @@ public class BaseGun : MonoBehaviour
     private void MyInput()
     {
         //Check if allowed to hold down button and take corresponding input
-        if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
-        else shooting = Input.GetKeyDown(KeyCode.Mouse0);
+        //if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
+        //else shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
         //Reloading 
         //if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) Reload();
@@ -80,16 +80,34 @@ public class BaseGun : MonoBehaviour
         if (readyToShoot && shooting && !reloading && bulletsLeft <= 0) OnReload();
 
         //Shooting
-        if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
+        if (readyToShoot && allowButtonHold && shooting && !reloading && bulletsLeft > 0)
         {
             //Set bullets shot to 0
             bulletsShot = 0;
 
-            Shoot();
+            Shooting();
+        }
+    }
+    private void OnShoot()
+    {
+        if (!shooting)
+        {
+            shooting = true;
+            if (readyToShoot && !reloading && bulletsLeft > 0)
+            {
+                //Set bullets shot to 0
+                bulletsShot = 0;
+
+                Shooting();
+            }
+        }
+        else if (shooting)
+        {
+            shooting = false;
         }
     }
 
-    private void Shoot()
+    private void Shooting()
     {
         readyToShoot = false;
 
@@ -142,7 +160,7 @@ public class BaseGun : MonoBehaviour
 
         //if more than one bulletsPerTap make sure to repeat shoot function
         if (bulletsShot < bulletsPerTap && bulletsLeft > 0)
-            Invoke("Shoot", timeBetweenShots);
+            Invoke("Shooting", timeBetweenShots);
     }
     private void ResetShot()
     {

@@ -91,6 +91,8 @@ public class Movement : MonoBehaviour
     public bool sliding;
     public bool climbing;
     public bool clasping;
+    private bool crouching;
+    private bool sprinting;
     // Start is called before the first frame update
     private void Start()
     {
@@ -127,22 +129,30 @@ public class Movement : MonoBehaviour
     private void MyInput()
     {
         if (jumping) OnJump();
-
-
+    }
+    private void OnCrouch()
+    {
         //when to crouch
-        if(Input.GetKeyDown(crouchKey))
+        if(!crouching)
         {
+            crouching = true;  
             if (grounded && !OnSlope())
             {
                 rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
             }
             transform.localScale = Vector3.Lerp(crouchScale, startScale, lerpSpeed * Time.deltaTime);
         }
-        if(Input.GetKeyUp(crouchKey))
+        else if(crouching)
         {
+            crouching = false;
             Debug.Log(message: "return from crouch");
             transform.localScale = Vector3.Lerp(startScale, crouchScale, lerpSpeed * Time.deltaTime / 2);
         }
+    }
+    private void OnSprint()
+    {
+        if (!sprinting) sprinting = true;
+        else if (sprinting) sprinting = false;
     }
     private void StateHandler()
     {
@@ -174,13 +184,13 @@ public class Movement : MonoBehaviour
                 break;
 
             //sprint mode
-            case bool _ when grounded && Input.GetKey(sprintKey) && !Input.GetKey(crouchKey):
+            case bool _ when grounded && sprinting && !crouching:
                 state = MovementState.sprinting;
                 desiredMoveSpeed = sprintSpeed;
                 break;
                 
             //crouch mode
-            case bool _ when Input.GetKey(crouchKey):
+            case bool _ when crouching:
                 state = MovementState.crouching;
                 desiredMoveSpeed = crouchSpeed;
                 break;

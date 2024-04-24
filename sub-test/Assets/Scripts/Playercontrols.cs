@@ -46,6 +46,15 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""76717682-4470-4b2a-b493-b572933f5e22"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Clasp"",
                     ""type"": ""Button"",
                     ""id"": ""6764546c-5c15-4b10-9ff4-3ffbee317218"",
@@ -96,7 +105,7 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                     ""id"": ""ff1fd00d-9514-44f2-84cd-4701210e1cec"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -177,7 +186,7 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""dca0cb1b-4a0e-42ed-a29e-b9a9ad904f5a"",
-                    ""path"": ""<Keyboard>/c"",
+                    ""path"": ""<Keyboard>/ctrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -272,6 +281,17 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                     ""action"": ""ReleaseJump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f5ac2bd1-2642-4195-881f-712425247a43"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -282,6 +302,7 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
+        m_Player_sprint = m_Player.FindAction("sprint", throwIfNotFound: true);
         m_Player_Clasp = m_Player.FindAction("Clasp", throwIfNotFound: true);
         m_Player_Slide = m_Player.FindAction("Slide", throwIfNotFound: true);
         m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
@@ -353,6 +374,7 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Crouch;
+    private readonly InputAction m_Player_sprint;
     private readonly InputAction m_Player_Clasp;
     private readonly InputAction m_Player_Slide;
     private readonly InputAction m_Player_PickUp;
@@ -367,6 +389,7 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
         public PlayerActions(@Playercontrols wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
+        public InputAction @sprint => m_Wrapper.m_Player_sprint;
         public InputAction @Clasp => m_Wrapper.m_Player_Clasp;
         public InputAction @Slide => m_Wrapper.m_Player_Slide;
         public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
@@ -390,6 +413,9 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
             @Crouch.started += instance.OnCrouch;
             @Crouch.performed += instance.OnCrouch;
             @Crouch.canceled += instance.OnCrouch;
+            @sprint.started += instance.OnSprint;
+            @sprint.performed += instance.OnSprint;
+            @sprint.canceled += instance.OnSprint;
             @Clasp.started += instance.OnClasp;
             @Clasp.performed += instance.OnClasp;
             @Clasp.canceled += instance.OnClasp;
@@ -424,6 +450,9 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
             @Crouch.started -= instance.OnCrouch;
             @Crouch.performed -= instance.OnCrouch;
             @Crouch.canceled -= instance.OnCrouch;
+            @sprint.started -= instance.OnSprint;
+            @sprint.performed -= instance.OnSprint;
+            @sprint.canceled -= instance.OnSprint;
             @Clasp.started -= instance.OnClasp;
             @Clasp.performed -= instance.OnClasp;
             @Clasp.canceled -= instance.OnClasp;
@@ -469,6 +498,7 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
         void OnClasp(InputAction.CallbackContext context);
         void OnSlide(InputAction.CallbackContext context);
         void OnPickUp(InputAction.CallbackContext context);

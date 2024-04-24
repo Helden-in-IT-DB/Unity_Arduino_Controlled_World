@@ -24,6 +24,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "sprint",
+                    "type": "Button",
+                    "id": "76717682-4470-4b2a-b493-b572933f5e22",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Clasp",
                     "type": "Button",
                     "id": "6764546c-5c15-4b10-9ff4-3ffbee317218",
@@ -74,7 +83,7 @@
                     "id": "ff1fd00d-9514-44f2-84cd-4701210e1cec",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
                 },
                 {
@@ -155,7 +164,7 @@
                 {
                     "name": "",
                     "id": "dca0cb1b-4a0e-42ed-a29e-b9a9ad904f5a",
-                    "path": "<Keyboard>/c",
+                    "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -248,6 +257,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ReleaseJump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f5ac2bd1-2642-4195-881f-712425247a43",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "sprint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
