@@ -20,16 +20,7 @@
                     "id": "cd67a508-08bc-4265-9378-ddfabfb12ecb",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=2)",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "sprint",
-                    "type": "Button",
-                    "id": "76717682-4470-4b2a-b493-b572933f5e22",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -99,6 +90,24 @@
                     "name": "ReleaseJump",
                     "type": "Button",
                     "id": "dd900740-2f9e-4cf6-a5be-378f02f9ef20",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "76717682-4470-4b2a-b493-b572933f5e22",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ReleaseSprint",
+                    "type": "Button",
+                    "id": "b288b4c4-695e-425c-9534-6cbdd5ae7d61",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -262,12 +271,23 @@
                 },
                 {
                     "name": "",
+                    "id": "1829a435-0a73-4d12-af95-6c1b5c2ace6a",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReleaseSprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "f5ac2bd1-2642-4195-881f-712425247a43",
                     "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "sprint",
+                    "action": "Sprint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

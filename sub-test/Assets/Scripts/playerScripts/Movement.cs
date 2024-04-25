@@ -56,11 +56,6 @@ public class Movement : MonoBehaviour
     private Vector3 crouchScale;
     private float lerpSpeed = 1f;
 
-   //controls
-   [Header("Keybinds")]
-    KeyCode jumpKey = KeyCode.Space; 
-    KeyCode sprintKey = KeyCode.LeftShift;
-    KeyCode crouchKey = KeyCode.LeftControl;
 
     //groundcheck
     [Header("GroundCheck")]
@@ -72,6 +67,7 @@ public class Movement : MonoBehaviour
     public Transform orientation;
     private float horizontalInput;
     private float verticalInput;
+    public Vector3 movementInput;
     private Vector3 moveDirection;
     private Rigidbody rb;
 
@@ -254,7 +250,7 @@ public class Movement : MonoBehaviour
         private void MovePlayer()
     {
 
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        moveDirection = orientation.forward * movementInput.y + orientation.right * movementInput.x;
         //on slope
         if(OnSlope())
         {
@@ -278,9 +274,8 @@ public class Movement : MonoBehaviour
     }
     
     private void OnMove(InputValue inputValue)
-    {
-        horizontalInput = inputValue.Get<Vector3>().x;
-        verticalInput = inputValue.Get<Vector3>().y;
+    { 
+        movementInput = inputValue.Get<Vector3>();
     }
 
     private void SpeedControl()
