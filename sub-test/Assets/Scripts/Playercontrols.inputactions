@@ -33,9 +33,27 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ReleaseClasp",
+                    "type": "Button",
+                    "id": "2b835b04-85d2-49a3-b537-d67a38c488cf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Slide",
                     "type": "Button",
                     "id": "77192150-384b-4c1c-a2e5-b14a288e6cb1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ReleaseSlide",
+                    "type": "Button",
+                    "id": "e95b915c-5fed-469e-a979-27bd898ef070",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -184,7 +202,7 @@
                 {
                     "name": "",
                     "id": "4936c349-31ea-4af4-85bc-1d5bf3438a3d",
-                    "path": "<Keyboard>/ctrl",
+                    "path": "<Keyboard>/alt",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -195,7 +213,7 @@
                 {
                     "name": "",
                     "id": "ce3b5a9b-9e48-4f08-8155-1fbd87933cde",
-                    "path": "<Keyboard>/alt",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -288,6 +306,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f38dc09b-fd3c-47f8-8738-d4cde9bff5fb",
+                    "path": "<Keyboard>/c",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReleaseSlide",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f3712375-32fd-4366-aa89-fd4d4e702c37",
+                    "path": "<Keyboard>/alt",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReleaseClasp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

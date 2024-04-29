@@ -38,20 +38,6 @@ public class Sliding : MonoBehaviour
         slideScale = new Vector3 (transform.localScale.x, slideYScale, transform.localScale.z);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-        if (Input.GetKeyDown(slideKey) && (horizontalInput != 0 || verticalInput != 0))
-        {
-            StartSlide();
-        }
-        if (Input.GetKeyUp(slideKey) && pm.sliding)
-        {
-            StopSlide();
-        }
-    }
     private void FixedUpdate()
     {
         if (pm.sliding)
@@ -60,27 +46,34 @@ public class Sliding : MonoBehaviour
         }
     }
 
-    private void StartSlide()
+    private void OnSlide()
     {
-        pm.sliding	= true;                                                                 
+        if (pm.movementInput != Vector3.zero)
+        {
+            PlayerObj.transform.localScale = Vector3.Lerp(slideScale, startScale, lerpSpeed * Time.deltaTime);
+            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+            if (rb.velocity.y > -0.1f)
+            {
+                SlideTimer = maxSlideTime / 2;
+            }
+            else
+            {
+                SlideTimer = maxSlideTime;
+            }
+            pm.sliding = true;
+        }
 
-        PlayerObj.transform.localScale = Vector3.Lerp(slideScale, startScale, lerpSpeed * Time.deltaTime);
-        rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
-        if(rb.velocity.y > -0.1f)
-        {
-            SlideTimer = maxSlideTime / 2;
-        }
-        else 
-        {
-        SlideTimer = maxSlideTime;
-        }
+
+
     }
-    private void StopSlide()
+    private void OnReleaseSlide()
     {
-        pm.sliding = false;
+        if (pm.sliding)
+        {
+            pm.sliding = false;
 
-        PlayerObj.localScale = Vector3.Lerp(startScale, slideScale, lerpSpeed * Time.deltaTime / 2);
-
+            PlayerObj.localScale = Vector3.Lerp(startScale, slideScale, lerpSpeed * Time.deltaTime / 2);
+        }
     }
     private void SlidingMovement()
     {
@@ -94,7 +87,7 @@ public class Sliding : MonoBehaviour
 
             if (SlideTimer <= 0)
             {
-                StopSlide();
+                OnReleaseSlide();
             }
         }
         else

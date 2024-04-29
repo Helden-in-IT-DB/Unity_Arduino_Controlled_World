@@ -7,7 +7,7 @@ public class ClaspClimb : MonoBehaviour
 {
     [Header("references")]
     public Transform orientation;
-    public Movement pm;
+    private Movement pm;
     public Rigidbody rb;
     public LayerMask whatIsGround;
     
@@ -65,7 +65,7 @@ public class ClaspClimb : MonoBehaviour
     public float groundRegen;
     public float airRegen;
 
-    [Header("keybinds")]
+    //[Header("keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode grab = KeyCode.Mouse1;
     
@@ -75,6 +75,7 @@ public class ClaspClimb : MonoBehaviour
     void Start()
     {
         climbTimer = maxClimbTime;
+        pm = GetComponent<Movement>();
     }
 
     // Update is called once per frame
@@ -98,7 +99,7 @@ public class ClaspClimb : MonoBehaviour
         switch (true)
         {
             // state 1 - climbing
-            case bool _ when wallFront && Input.GetKey(KeyCode.W) && wallLookAngle <= maxWallLookAngle:
+            case bool _ when wallFront && (pm.movementInput.y >= 1) && wallLookAngle <= maxWallLookAngle:
                 if (!climbing && climbTimer > 0)
                 {
                     StartClimbing();
@@ -111,7 +112,7 @@ public class ClaspClimb : MonoBehaviour
             case bool _ when exitingWall:
 
                 if (climbing) StopClimbing();
-                if (clasping) StopClasping();
+                if (clasping) OnReleaseClasping();
 
                 if (exitingWallTimer > 0) exitingWallTimer -= Time.deltaTime;
                 if (exitingWallTimer < 0) exitingWall = false;
@@ -121,18 +122,18 @@ public class ClaspClimb : MonoBehaviour
             case bool _ when Input.GetKey(grab):
                 if (climbTimer > 0 && wallFront)
                 {
-                    StartClasp();
+                    OnClasp();
                 }
                 if (clasping)
                 {
                     if (climbTimer > 0) climbTimer -= (Time.deltaTime / claspTimerSlowDown);
-                    if (climbTimer <= 0) StopClasping();
+                    if (climbTimer <= 0) OnReleaseClasping();
                 }
                 break;
             // state 4 - none
             default:
                 if (climbing) StopClimbing();
-                if (clasping) StopClasping();
+                //if (clasping) OnReleaseClasping();
                 break;
         }
 
@@ -196,7 +197,7 @@ public class ClaspClimb : MonoBehaviour
     {
         if (clasping)
         {
-            StopClasping();
+            OnReleaseClasping();
         }
         climbing = true;
         pm.climbing = true;
@@ -221,8 +222,9 @@ public class ClaspClimb : MonoBehaviour
         climbing = false;
         pm.climbing = false;
     }
-    private void StartClasp()
+    private void OnClasp()
     {
+        Debug.Log("pressed");
         if (climbing)
         {
             StopClimbing();
@@ -230,7 +232,7 @@ public class ClaspClimb : MonoBehaviour
         clasping = true;
         pm.clasping = true;
     }
-    private void StopClasping()
+    private void OnReleaseClasping()
     { 
         rb.constraints = RigidbodyConstraints.None;
         rb.constraints = RigidbodyConstraints.FreezeRotation;

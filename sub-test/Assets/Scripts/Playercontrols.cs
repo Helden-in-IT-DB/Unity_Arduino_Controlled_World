@@ -55,9 +55,27 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""ReleaseClasp"",
+                    ""type"": ""Button"",
+                    ""id"": ""2b835b04-85d2-49a3-b537-d67a38c488cf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Slide"",
                     ""type"": ""Button"",
                     ""id"": ""77192150-384b-4c1c-a2e5-b14a288e6cb1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ReleaseSlide"",
+                    ""type"": ""Button"",
+                    ""id"": ""e95b915c-5fed-469e-a979-27bd898ef070"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -206,7 +224,7 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""4936c349-31ea-4af4-85bc-1d5bf3438a3d"",
-                    ""path"": ""<Keyboard>/ctrl"",
+                    ""path"": ""<Keyboard>/alt"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -217,7 +235,7 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ce3b5a9b-9e48-4f08-8155-1fbd87933cde"",
-                    ""path"": ""<Keyboard>/alt"",
+                    ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -312,6 +330,28 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f38dc09b-fd3c-47f8-8738-d4cde9bff5fb"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReleaseSlide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f3712375-32fd-4366-aa89-fd4d4e702c37"",
+                    ""path"": ""<Keyboard>/alt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReleaseClasp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -323,7 +363,9 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_Clasp = m_Player.FindAction("Clasp", throwIfNotFound: true);
+        m_Player_ReleaseClasp = m_Player.FindAction("ReleaseClasp", throwIfNotFound: true);
         m_Player_Slide = m_Player.FindAction("Slide", throwIfNotFound: true);
+        m_Player_ReleaseSlide = m_Player.FindAction("ReleaseSlide", throwIfNotFound: true);
         m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
         m_Player_Drop = m_Player.FindAction("Drop", throwIfNotFound: true);
         m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
@@ -396,7 +438,9 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_Clasp;
+    private readonly InputAction m_Player_ReleaseClasp;
     private readonly InputAction m_Player_Slide;
+    private readonly InputAction m_Player_ReleaseSlide;
     private readonly InputAction m_Player_PickUp;
     private readonly InputAction m_Player_Drop;
     private readonly InputAction m_Player_Reload;
@@ -412,7 +456,9 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @Clasp => m_Wrapper.m_Player_Clasp;
+        public InputAction @ReleaseClasp => m_Wrapper.m_Player_ReleaseClasp;
         public InputAction @Slide => m_Wrapper.m_Player_Slide;
+        public InputAction @ReleaseSlide => m_Wrapper.m_Player_ReleaseSlide;
         public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
         public InputAction @Drop => m_Wrapper.m_Player_Drop;
         public InputAction @Reload => m_Wrapper.m_Player_Reload;
@@ -439,9 +485,15 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
             @Clasp.started += instance.OnClasp;
             @Clasp.performed += instance.OnClasp;
             @Clasp.canceled += instance.OnClasp;
+            @ReleaseClasp.started += instance.OnReleaseClasp;
+            @ReleaseClasp.performed += instance.OnReleaseClasp;
+            @ReleaseClasp.canceled += instance.OnReleaseClasp;
             @Slide.started += instance.OnSlide;
             @Slide.performed += instance.OnSlide;
             @Slide.canceled += instance.OnSlide;
+            @ReleaseSlide.started += instance.OnReleaseSlide;
+            @ReleaseSlide.performed += instance.OnReleaseSlide;
+            @ReleaseSlide.canceled += instance.OnReleaseSlide;
             @PickUp.started += instance.OnPickUp;
             @PickUp.performed += instance.OnPickUp;
             @PickUp.canceled += instance.OnPickUp;
@@ -479,9 +531,15 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
             @Clasp.started -= instance.OnClasp;
             @Clasp.performed -= instance.OnClasp;
             @Clasp.canceled -= instance.OnClasp;
+            @ReleaseClasp.started -= instance.OnReleaseClasp;
+            @ReleaseClasp.performed -= instance.OnReleaseClasp;
+            @ReleaseClasp.canceled -= instance.OnReleaseClasp;
             @Slide.started -= instance.OnSlide;
             @Slide.performed -= instance.OnSlide;
             @Slide.canceled -= instance.OnSlide;
+            @ReleaseSlide.started -= instance.OnReleaseSlide;
+            @ReleaseSlide.performed -= instance.OnReleaseSlide;
+            @ReleaseSlide.canceled -= instance.OnReleaseSlide;
             @PickUp.started -= instance.OnPickUp;
             @PickUp.performed -= instance.OnPickUp;
             @PickUp.canceled -= instance.OnPickUp;
@@ -528,7 +586,9 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnClasp(InputAction.CallbackContext context);
+        void OnReleaseClasp(InputAction.CallbackContext context);
         void OnSlide(InputAction.CallbackContext context);
+        void OnReleaseSlide(InputAction.CallbackContext context);
         void OnPickUp(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
