@@ -17,16 +17,13 @@ public class Test : MonoBehaviour
     private RaycastHit itemFrontHit;
     private bool itemFront;
     private bool HandsfullCheck;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private bool objectScripted;
 
     // Update is called once per frame
     void Update()
     {
-     ItemCheck();
+     if (!HandsfullCheck) ItemCheck();
+     if (HandsfullCheck && !objectScripted) MoveObject(); 
     }
 
     private void ItemCheck()
@@ -42,6 +39,10 @@ public class Test : MonoBehaviour
         {
             Object = null;
         }
+    }
+    private void MoveObject()
+    {
+        Object.transform.localPosition = Vector3.Lerp(Vector3.zero, Object.transform.localPosition, 2 * Time.deltaTime);
     }
     private void OnPickUp()
     {
@@ -61,6 +62,7 @@ public class Test : MonoBehaviour
                         // Enable the script
                         Object.transform.SetParent(gunContainer);
                         HandsfullCheck = true;
+                        objectScripted = true;
                         scripts[i].enabled = true;
                         //Debug.Log("Script enabled on " + Object.name);
                     }
@@ -69,13 +71,22 @@ public class Test : MonoBehaviour
             }
             else
             {
-                Debug.Log("No scripts found on " + scripts.Length);
+                Object.transform.SetParent(gunContainer);
+                objectScripted = false;
+                HandsfullCheck = true;
             }
         }
     }
     private void OnDrop()
     {
-        HandsfullCheck = false;
+        if (HandsfullCheck)
+        {
+            HandsfullCheck = false;
+            if (!objectScripted) UnscriptedItemDrop();
+        }
     }
-
+    private void UnscriptedItemDrop()
+    {
+        Object.transform.SetParent(null);
+    }
 }

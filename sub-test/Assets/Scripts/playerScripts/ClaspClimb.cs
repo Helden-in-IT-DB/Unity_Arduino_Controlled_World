@@ -65,9 +65,7 @@ public class ClaspClimb : MonoBehaviour
     public float groundRegen;
     public float airRegen;
 
-    //[Header("keybinds")]
-    public KeyCode jumpKey = KeyCode.Space;
-    public KeyCode grab = KeyCode.Mouse1;
+ 
     
 
 
@@ -119,7 +117,7 @@ public class ClaspClimb : MonoBehaviour
                 break;
 
             // state 3 - clasping
-            case bool _ when Input.GetKey(grab):
+            case bool _ when clasping:
                 if (climbTimer > 0 && wallFront)
                 {
                     OnClasp();
@@ -136,7 +134,10 @@ public class ClaspClimb : MonoBehaviour
                 //if (clasping) OnReleaseClasping();
                 break;
         }
+        
+        if (wallFront && (pm.movementInput.y <= -1) && clasping) WallRelease();
 
+        /* old claspjump switch case
         //switch for wall exiting
         switch (true)
         {
@@ -146,7 +147,7 @@ public class ClaspClimb : MonoBehaviour
             // wall jump mode 2 - jump off when clasping and facing wall
             case bool _ when wallFront && Input.GetKeyDown(jumpKey) && clasping:
             // exit mode 1 - get off the wall when when clasping, looking at wall, walking backwards
-            case bool _ when wallFront && Input.GetKeyDown(KeyCode.S) && clasping:
+            case bool _ when wallFront && (pm.movementInput.y <= -1) && clasping:
                 WallRelease();
                 break;
             // ground / climb jump check to avoid repetition
@@ -158,7 +159,30 @@ public class ClaspClimb : MonoBehaviour
                 break;
 
         }
+        */
 
+    }
+    private void OnJump()
+    {
+        //switch for wall exiting
+        switch (true)
+        {
+            case bool _ when !wallFront && clasping:
+                Claspjump();
+                break;
+            // wall jump mode 2 - jump off when clasping and facing wall
+            case bool _ when wallFront && clasping:
+                WallRelease();
+                break;
+            // ground / climb jump check to avoid repetition
+            case bool _ when pm.grounded || climbJumpsLeft == 0:
+                break;
+            // wall jump mode 1 - normal wall jump when wall in infront
+            case bool _ when wallFront && climbing:
+                ClimbBackJump();
+                break;
+
+        }
     }
     private void Wallcheck()
     {
