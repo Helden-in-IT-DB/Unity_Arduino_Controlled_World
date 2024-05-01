@@ -34,6 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1328913725997227342}
+  - {fileID: 7894353111705566037}
   m_Father: {fileID: 3239174066180514671}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &2209589585551793542
@@ -276,6 +277,8 @@ GameObject:
   - component: {fileID: 4021598926168314248}
   - component: {fileID: 6276916223199190168}
   - component: {fileID: 4717911934449081704}
+  - component: {fileID: 4886883668382654691}
+  - component: {fileID: 5978542829322435226}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -366,7 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CmS: {fileID: 6276916223199190168}
   stateTeller: {fileID: 0}
-  coll: {fileID: 0}
+  coll: {fileID: 7807324765049054989}
   maxSlopeAngle: 46
   walkSpeed: 7
   sprintSpeed: 10
@@ -386,6 +389,7 @@ MonoBehaviour:
     m_Bits: 256
   grounded: 0
   orientation: {fileID: 2581290932410203960}
+  movementInput: {x: 0, y: 0, z: 0}
   state: 0
   sliding: 0
   climbing: 0
@@ -421,7 +425,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 2581290932410203960}
-  pm: {fileID: 6834727942914902005}
   rb: {fileID: 4157736620201942031}
   whatIsGround:
     serializedVersion: 2
@@ -446,8 +449,6 @@ MonoBehaviour:
   minWallNormalAngleChange: 5
   groundRegen: 1
   airRegen: 10
-  jumpKey: 32
-  grab: 324
 --- !u!143 &4717911934449081704
 CharacterController:
   m_ObjectHideFlags: 0
@@ -474,6 +475,85 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4886883668382654691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2288749641641856963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65cf0c65bc4829d4b9f66aeed5545332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 3239174066180514671}
+  gunContainer: {fileID: 1328913725997227342}
+  itemContainer: {fileID: 7894353111705566037}
+  fpsCam: {fileID: 6982718765280932351}
+  WhatIsItem:
+    serializedVersion: 2
+    m_Bits: 512
+  pickUpRange: 8
+  sphereCastRadius: 0.2
+--- !u!114 &5978542829322435226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2288749641641856963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: d5943ffe636fc5d42bff79a3c1fbf3b9, type: 3}
+  m_NotificationBehavior: 1
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8a62ae01-b743-4f51-8bf5-37c3cbe109b5
+    m_ActionName: ground/move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0e3a5adf-8645-4c19-9a67-7efaf3efdabe
+    m_ActionName: ground/jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cd67a508-08bc-4265-9378-ddfabfb12ecb
+    m_ActionName: ground/crouch[/Keyboard/leftAlt]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 77192150-384b-4c1c-a2e5-b14a288e6cb1
+    m_ActionName: ground/slide[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 872c6ae7-616b-4681-87a2-76fd35c4382a
+    m_ActionName: player/pickUp[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bca96be1-3022-4558-87c6-c8142e057f76
+    m_ActionName: player/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6764546c-5c15-4b10-9ff4-3ffbee317218
+    m_ActionName: player/clasp[/Keyboard/ctrl]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &5838686341515461936
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,6 +637,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &6787317758943873687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7894353111705566037}
+  m_Layer: 0
+  m_Name: item holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7894353111705566037
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6787317758943873687}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.11, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6982718765280932351}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7787989459203869855
 GameObject:
   m_ObjectHideFlags: 0

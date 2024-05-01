@@ -110,7 +110,7 @@ public class ClaspClimb : MonoBehaviour
             case bool _ when exitingWall:
 
                 if (climbing) StopClimbing();
-                if (clasping) OnReleaseClasping();
+                if (clasping) OnReleaseClasp();
 
                 if (exitingWallTimer > 0) exitingWallTimer -= Time.deltaTime;
                 if (exitingWallTimer < 0) exitingWall = false;
@@ -125,13 +125,13 @@ public class ClaspClimb : MonoBehaviour
                 if (clasping)
                 {
                     if (climbTimer > 0) climbTimer -= (Time.deltaTime / claspTimerSlowDown);
-                    if (climbTimer <= 0) OnReleaseClasping();
+                    if (climbTimer <= 0) OnReleaseClasp();
                 }
                 break;
             // state 4 - none
             default:
                 if (climbing) StopClimbing();
-                //if (clasping) OnReleaseClasping();
+                //if (clasping) OnReleaseClasp();
                 break;
         }
         
@@ -221,7 +221,7 @@ public class ClaspClimb : MonoBehaviour
     {
         if (clasping)
         {
-            OnReleaseClasping();
+            OnReleaseClasp();
         }
         climbing = true;
         pm.climbing = true;
@@ -248,15 +248,17 @@ public class ClaspClimb : MonoBehaviour
     }
     private void OnClasp()
     {
-        Debug.Log("pressed");
-        if (climbing)
+        if (wallFront)
         {
-            StopClimbing();
-        }       
-        clasping = true;
-        pm.clasping = true;
+            if (climbing)
+            {
+                StopClimbing();
+            }
+            clasping = true;
+            pm.clasping = true;
+        }
     }
-    private void OnReleaseClasping()
+    private void OnReleaseClasp()
     { 
         rb.constraints = RigidbodyConstraints.None;
         rb.constraints = RigidbodyConstraints.FreezeRotation;

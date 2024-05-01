@@ -6,7 +6,7 @@ using UnityEngine;
 public class Test : MonoBehaviour
 {
     [Header("references")]
-    public Transform player, gunContainer, fpsCam;
+    public Transform player, gunContainer, itemContainer, fpsCam;
     public LayerMask WhatIsItem;
     private GameObject Object;
 
@@ -71,7 +71,7 @@ public class Test : MonoBehaviour
             }
             else
             {
-                Object.transform.SetParent(gunContainer);
+                Object.transform.SetParent(itemContainer);
                 objectScripted = false;
                 HandsfullCheck = true;
             }

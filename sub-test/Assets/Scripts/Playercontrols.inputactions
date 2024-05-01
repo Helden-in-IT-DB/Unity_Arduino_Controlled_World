@@ -9,7 +9,7 @@
                     "name": "Move",
                     "type": "PassThrough",
                     "id": "8a62ae01-b743-4f51-8bf5-37c3cbe109b5",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -189,6 +189,61 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "joystick",
+                    "id": "45d07270-a297-4c03-8402-446692a97c2a",
+                    "path": "3DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "eac85bb7-75f7-4a8c-bee6-cc4f6be5050b",
+                    "path": "<Joystick>/stick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "de6995bb-1b94-45f8-8658-d79c22cbf20c",
+                    "path": "<Joystick>/stick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "44cb7b09-6b47-47f5-b768-b9a6bec7ee04",
+                    "path": "<Joystick>/stick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "a036a30b-23a7-40f1-9be2-d080e2ccf015",
+                    "path": "<Joystick>/stick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "dca0cb1b-4a0e-42ed-a29e-b9a9ad904f5a",
                     "path": "<Keyboard>/ctrl",
@@ -234,6 +289,17 @@
                 },
                 {
                     "name": "",
+                    "id": "3a571dde-8eab-445a-9946-c93379aacd11",
+                    "path": "<Joystick>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PickUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "8db466ee-c01a-42a0-8f93-a966977f0215",
                     "path": "<Keyboard>/q",
                     "interactions": "",
@@ -258,6 +324,17 @@
                     "name": "",
                     "id": "e1a9055e-e61e-4d0a-8068-7d86cb7dd837",
                     "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "39620320-0c5e-42b9-a6f2-fca5dade6ed8",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -324,7 +401,7 @@
                     "name": "",
                     "id": "f3712375-32fd-4366-aa89-fd4d4e702c37",
                     "path": "<Mouse>/rightButton",
-                    "interactions": "",
+                    "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "",
                     "action": "ReleaseClasp",
