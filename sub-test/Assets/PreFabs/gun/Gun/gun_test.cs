@@ -12,33 +12,46 @@ public class gun_test : MonoBehaviour
     [SerializeField] private Animator animator;
 
     private bool shooting;
+    private bool reloading;
     // Start is called before the first frame update
     void Start()
     {
-        animator.Play("walk");
+        animator.Play("pose");
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.localPosition = new Vector3(HoldCords_x,HoldCords_y,HoldCords_z);
+
     }
 
     private void OnShoot()
     {
-       if (!shooting)
+       if (!shooting && !reloading)
        {
         Debug.Log("hewo");
-        Invoke("animeReset",.4f);
+        Invoke("animeReset",.5f);
         shooting = true;
         animator.Play("fire");
         Debug.Log("");
        }
     }
+    private void OnMove()
+    {
+
+    }
     private void animeReset()
     {
-         shooting = false;
-        animator.Play("walk");
+        shooting = false;
+        reloading = false;
+        animator.Play("pose");
+    }
+    private void OnReload()
+    {
+        reloading = true;
+        Invoke("animeReset", 2.5f);
+        animator.Play("reload");
     }
     /*
     private IEnumerator Pplay()
