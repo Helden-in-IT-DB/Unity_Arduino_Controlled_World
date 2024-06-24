@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class gun_test : MonoBehaviour
@@ -10,13 +11,25 @@ public class gun_test : MonoBehaviour
     [SerializeField] private float HoldCords_y;
     [SerializeField] private float HoldCords_z;
     [SerializeField] private Animator animator;
-
+    [SerializeField] private Animator arms;
+    [SerializeField] public Transform am;
     private bool shooting;
     private bool reloading;
     // Start is called before the first frame update
     void Start()
     {
-        animator.Play("pose");
+        animator.Play("pose");           
+        am = transform.parent.parent.Find("arms3");
+        Debug.Log(am);
+        try 
+        { 
+            arms = am.GetComponent<Animator>();
+        } catch (Exception e)
+        {
+            Debug.Log($"sucks to  be you {e}");
+        }
+        
+        Debug.Log(arms);
     }
 
     // Update is called once per frame
