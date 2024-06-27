@@ -9,6 +9,7 @@ public class Test : MonoBehaviour
     public Transform player, gunContainer, itemContainer, fpsCam;
     public LayerMask WhatIsItem;
     private GameObject Object;
+    [SerializeField] private GameObject arms;
 
     
     [Header("detecttion")]
@@ -64,6 +65,7 @@ public class Test : MonoBehaviour
                         HandsfullCheck = true;
                         objectScripted = true;
                         scripts[i].enabled = true;
+                        arms.SetActive(true);
                         //Debug.Log("Script enabled on " + Object.name);
                     }
                 }
@@ -82,6 +84,7 @@ public class Test : MonoBehaviour
         if (HandsfullCheck)
         {
             HandsfullCheck = false;
+            arms.SetActive(false);
             if (!objectScripted) UnscriptedItemDrop();
         }
     }
