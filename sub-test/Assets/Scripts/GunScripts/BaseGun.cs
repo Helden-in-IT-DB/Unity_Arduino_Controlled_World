@@ -46,6 +46,16 @@ public class BaseGun : MonoBehaviour
     //bug fixing :D
     public bool allowInvoke = true;
 
+    [Header("animator/ cords")]
+    [SerializeField] private float HoldCords_x;
+    [SerializeField] private float HoldCords_y;
+    [SerializeField] private float HoldCords_z;
+    [SerializeField] private Animator animatorGun;
+    [SerializeField] private Animator animatorArms; 
+    [SerializeField] private string includeArms = "_gun-arm";
+    [SerializeField] private string[] animationNames;
+    private float idleCounter;
+
     private void Awake()
     {
         //make sure magazine is full
@@ -63,10 +73,23 @@ public class BaseGun : MonoBehaviour
             camHolder = transform.parent.parent;  
             fpsCam = camHolder.GetComponent<Camera>();
             playerRb = transform.parent.parent.parent.GetComponent<Rigidbody>();
+            animatorArms = transform.parent.parent.Find("arms3").GetComponent<Animator>();
         }
         //Set ammo display, if it exists :D
-        if (ammunitionDisplay != null)
+        if (ammunitionDisplay != null) 
+        {
             ammunitionDisplay.SetText(bulletsLeft / bulletsPerTap + " / " + magazineSize / bulletsPerTap);
+        }
+        if (animatorGun.GetCurrentAnimatorStateInfo(0).IsName(animationNames[0]) && idleCounter < 2f)
+        {
+            idleCounter += Time.deltaTime;
+        }
+        else if (idleCounter >= 2f)
+        {
+            animatorGun.Play(animationNames[1]);
+            animatorArms.Play(animationNames[1] + includeArms);
+            idleCounter = 0f;
+        }
     }
     private void MyInput()
     {
@@ -110,6 +133,8 @@ public class BaseGun : MonoBehaviour
     private void Shooting()
     {
         readyToShoot = false;
+        animatorGun.Play(animationNames[3]);
+        animatorArms.Play(animationNames[3] + includeArms);
 
         //Find the exact hit position using a raycast
         Ray ray = fpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); //Just a ray through the middle of your current view
@@ -165,6 +190,8 @@ public class BaseGun : MonoBehaviour
     private void ResetShot()
     {
         //Allow shooting and invoking again
+        animatorGun.Play(animationNames[1]);
+        animatorArms.Play(animationNames[1] + includeArms);
         readyToShoot = true;
         allowInvoke = true;
     }
@@ -172,11 +199,15 @@ public class BaseGun : MonoBehaviour
     private void OnReload()
     {
         reloading = true;
+        animatorGun.Play(animationNames[4]);
+        animatorArms.Play(animationNames[4] + includeArms);
         Invoke("ReloadFinished", reloadTime); //Invoke ReloadFinished function with your reloadTime as delay
     }
     private void ReloadFinished()
     {
         //Fill magazine
+        animatorGun.Play(animationNames[1]);
+        animatorArms.Play(animationNames[1] + includeArms);
         bulletsLeft = magazineSize;
         reloading = false;
     }
@@ -184,5 +215,10 @@ public class BaseGun : MonoBehaviour
         public void DisableAmmoText()
     {
         ammunitionDisplay.text = null;
+    }
+    public void ShutdownAnimations ()
+    {
+        animatorGun.Play(animationNames[0]);
+        animatorArms.Play(animationNames[0] + includeArms);
     }
 }

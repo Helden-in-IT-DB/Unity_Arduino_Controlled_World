@@ -6,10 +6,12 @@ using UnityEngine;
 public class ScriptEnabler_baseGun : MonoBehaviour
 {
     [Header("references")]
-    public BaseGun gunScript;
-    public Rigidbody rb;
+    [SerializeField] private BaseGun gunScript;
+    [SerializeField] private Rigidbody rb;
     private Transform player, fpsCam;
-    public BoxCollider coll;
+    [SerializeField] private BoxCollider coll;
+    [SerializeField] private Vector3 rotation;
+
 
     [Header("gun drop stats")]
 
@@ -66,7 +68,7 @@ public class ScriptEnabler_baseGun : MonoBehaviour
         if (equipped)
         {
             transform.localPosition = Vector3.zero;
-            transform.localRotation = Quaternion.Euler(Vector3.zero);
+            transform.localRotation = Quaternion.Euler(rotation);
         }
     }
     private void FindComponents()
@@ -83,7 +85,7 @@ public class ScriptEnabler_baseGun : MonoBehaviour
 
         //makes the weapon a child of the gunholder and sets it in place
         transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.Euler(Vector3.zero);
+       // transform.localRotation = Quaternion.Euler(Vector3.zero);
 
         //makes rigidbody kinematic and boxcollider a trigger
         rb.isKinematic = true;
@@ -118,6 +120,7 @@ public class ScriptEnabler_baseGun : MonoBehaviour
         
         //disable script
         gunScript.DisableAmmoText();
+        gunScript.ShutdownAnimations();
         gunScript.enabled = false;
         this.enabled = false;
     }
