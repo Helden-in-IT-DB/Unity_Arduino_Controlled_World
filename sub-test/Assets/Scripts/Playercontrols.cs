@@ -152,6 +152,24 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PutInInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""3b841ea8-76fb-4dcb-819e-015f558f3524"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RemoveInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""d144e775-4720-4b43-8553-c88776dddf97"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -429,6 +447,28 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                     ""action"": ""ReleaseClasp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ca06659-76c1-48c6-9ed1-b9b0d6f8b789"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PutInInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a4c8dbd7-f1dc-427f-b744-265d2e21695d"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RemoveInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -451,6 +491,8 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
         m_Player_ReleaseJump = m_Player.FindAction("ReleaseJump", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_ReleaseSprint = m_Player.FindAction("ReleaseSprint", throwIfNotFound: true);
+        m_Player_PutInInventory = m_Player.FindAction("PutInInventory", throwIfNotFound: true);
+        m_Player_RemoveInventory = m_Player.FindAction("RemoveInventory", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -526,6 +568,8 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ReleaseJump;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_ReleaseSprint;
+    private readonly InputAction m_Player_PutInInventory;
+    private readonly InputAction m_Player_RemoveInventory;
     public struct PlayerActions
     {
         private @Playercontrols m_Wrapper;
@@ -544,6 +588,8 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
         public InputAction @ReleaseJump => m_Wrapper.m_Player_ReleaseJump;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @ReleaseSprint => m_Wrapper.m_Player_ReleaseSprint;
+        public InputAction @PutInInventory => m_Wrapper.m_Player_PutInInventory;
+        public InputAction @RemoveInventory => m_Wrapper.m_Player_RemoveInventory;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -595,6 +641,12 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
             @ReleaseSprint.started += instance.OnReleaseSprint;
             @ReleaseSprint.performed += instance.OnReleaseSprint;
             @ReleaseSprint.canceled += instance.OnReleaseSprint;
+            @PutInInventory.started += instance.OnPutInInventory;
+            @PutInInventory.performed += instance.OnPutInInventory;
+            @PutInInventory.canceled += instance.OnPutInInventory;
+            @RemoveInventory.started += instance.OnRemoveInventory;
+            @RemoveInventory.performed += instance.OnRemoveInventory;
+            @RemoveInventory.canceled += instance.OnRemoveInventory;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -641,6 +693,12 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
             @ReleaseSprint.started -= instance.OnReleaseSprint;
             @ReleaseSprint.performed -= instance.OnReleaseSprint;
             @ReleaseSprint.canceled -= instance.OnReleaseSprint;
+            @PutInInventory.started -= instance.OnPutInInventory;
+            @PutInInventory.performed -= instance.OnPutInInventory;
+            @PutInInventory.canceled -= instance.OnPutInInventory;
+            @RemoveInventory.started -= instance.OnRemoveInventory;
+            @RemoveInventory.performed -= instance.OnRemoveInventory;
+            @RemoveInventory.canceled -= instance.OnRemoveInventory;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -674,5 +732,7 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
         void OnReleaseJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnReleaseSprint(InputAction.CallbackContext context);
+        void OnPutInInventory(InputAction.CallbackContext context);
+        void OnRemoveInventory(InputAction.CallbackContext context);
     }
 }

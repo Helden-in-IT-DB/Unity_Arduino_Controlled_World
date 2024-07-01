@@ -11,7 +11,12 @@ public class Test : MonoBehaviour
     private GameObject Object;
     [SerializeField] private GameObject arms;
 
-    
+    [Header("inverntory")]
+    [SerializeField] private Transform inventory;
+    [SerializeField] private GameObject item_In_Inventory;
+    [SerializeField] private bool inventoryFull;
+
+
     [Header("detecttion")]
     public float pickUpRange;
     public float sphereCastRadius;
@@ -23,8 +28,8 @@ public class Test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     if (!HandsfullCheck) ItemCheck();
-     if (HandsfullCheck && !objectScripted) MoveObject(); 
+        if (!HandsfullCheck) ItemCheck();
+        if (HandsfullCheck && !objectScripted) MoveObject();
     }
 
     private void ItemCheck()
@@ -92,5 +97,25 @@ public class Test : MonoBehaviour
     {
         Object.transform.GetComponent<Rigidbody>().velocity = transform.GetComponent<Rigidbody>().velocity;
         Object.transform.SetParent(null);
+    }
+    private void OnPutInInventory()
+    {
+        if (!inventoryFull && !HandsfullCheck)
+        {
+            item_In_Inventory = Object;
+            item_In_Inventory.transform.SetParent(inventory);
+            item_In_Inventory.SetActive(false);
+            inventoryFull = true;
+        }
+    }
+    private void OnRemoveInventory()
+    {
+        if (inventoryFull)
+        {
+            item_In_Inventory.transform.SetParent(null);
+            item_In_Inventory.transform.localPosition = itemContainer.position;
+            item_In_Inventory.SetActive(true);
+            inventoryFull = false;
+        }
     }
 }
