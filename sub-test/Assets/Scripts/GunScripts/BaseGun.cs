@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Remoting.Messaging;
@@ -54,8 +55,8 @@ public class BaseGun : MonoBehaviour
     [SerializeField] private Animator animatorArms; 
     [SerializeField] private string includeArms = "_gun-arm";
     [SerializeField] private string[] animationNames;
+    private bool animate;
     private float idleCounter;
-
     private void Awake()
     {
         //make sure magazine is full
@@ -73,23 +74,29 @@ public class BaseGun : MonoBehaviour
             camHolder = transform.parent.parent;  
             fpsCam = camHolder.GetComponent<Camera>();
             playerRb = transform.parent.parent.parent.GetComponent<Rigidbody>();
+            animatorGun =transform.GetComponent<Animator>();
             animatorArms = transform.parent.parent.Find("arms3").GetComponent<Animator>();
+            if (animatorArms != null && animatorGun != null)
+            {
+                animate = true;
+            }
         }
         //Set ammo display, if it exists :D
         if (ammunitionDisplay != null) 
         {
             ammunitionDisplay.SetText(bulletsLeft / bulletsPerTap + " / " + magazineSize / bulletsPerTap);
         }
+        /*
         if (animatorGun.GetCurrentAnimatorStateInfo(0).IsName(animationNames[0]) && idleCounter < 2f)
         {
             idleCounter += Time.deltaTime;
         }
         else if (idleCounter >= 2f)
         {
-            animatorGun.Play(animationNames[1]);
-            animatorArms.Play(animationNames[1] + includeArms);
+            AnimateThings(1);
             idleCounter = 0f;
         }
+        */
     }
     private void MyInput()
     {
@@ -133,8 +140,7 @@ public class BaseGun : MonoBehaviour
     private void Shooting()
     {
         readyToShoot = false;
-        animatorGun.Play(animationNames[3]);
-        animatorArms.Play(animationNames[3] + includeArms);
+        AnimateThings(3);
 
         //Find the exact hit position using a raycast
         Ray ray = fpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); //Just a ray through the middle of your current view
@@ -151,8 +157,8 @@ public class BaseGun : MonoBehaviour
         Vector3 directionWithoutSpread = targetPoint - attackPoint.position;
 
         //Calculate spread
-        float x = Random.Range(-spread, spread);
-        float y = Random.Range(-spread, spread);
+        float x = UnityEngine.Random.Range(-spread, spread);
+        float y = UnityEngine.Random.Range(-spread, spread);
 
         //Calculate new direction with spread
         Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, y, 0); //Just add spread to last direction
@@ -190,8 +196,7 @@ public class BaseGun : MonoBehaviour
     private void ResetShot()
     {
         //Allow shooting and invoking again
-        animatorGun.Play(animationNames[1]);
-        animatorArms.Play(animationNames[1] + includeArms);
+        AnimateThings(1);
         readyToShoot = true;
         allowInvoke = true;
     }
@@ -199,15 +204,13 @@ public class BaseGun : MonoBehaviour
     private void OnReload()
     {
         reloading = true;
-        animatorGun.Play(animationNames[4]);
-        animatorArms.Play(animationNames[4] + includeArms);
+        AnimateThings(4);
         Invoke("ReloadFinished", reloadTime); //Invoke ReloadFinished function with your reloadTime as delay
     }
     private void ReloadFinished()
     {
         //Fill magazine
-        animatorGun.Play(animationNames[1]);
-        animatorArms.Play(animationNames[1] + includeArms);
+        AnimateThings(1);
         bulletsLeft = magazineSize;
         reloading = false;
     }
@@ -216,9 +219,23 @@ public class BaseGun : MonoBehaviour
     {
         ammunitionDisplay.text = null;
     }
+    //sets the animation of whatever animation is specified
+    private void AnimateThings (int specificAnimation)
+    {
+        if (animate)
+        {
+            animatorGun.Play(animationNames[specificAnimation]);
+            animatorArms.Play(animationNames[specificAnimation] + includeArms);
+        }
+    }
     public void ShutdownAnimations ()
     {
-        animatorGun.Play(animationNames[0]);
-        animatorArms.Play(animationNames[0] + includeArms);
+        playerRb = null;
+        if (animate)
+        {
+            animatorGun.Play(animationNames[0]);
+            animatorArms.Play(animationNames[0] + includeArms);
+        }
+        
     }
 }

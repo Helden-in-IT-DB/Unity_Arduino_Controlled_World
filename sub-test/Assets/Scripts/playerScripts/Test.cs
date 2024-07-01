@@ -43,7 +43,7 @@ public class Test : MonoBehaviour
     }
     private void MoveObject()
     {
-        Object.transform.localPosition = Vector3.Lerp(Vector3.zero, Object.transform.localPosition, 2 * Time.deltaTime);
+        Object.transform.localPosition = Vector3.Lerp(Vector3.zero, Object.transform.localPosition, 5 * Time.deltaTime);
     }
     private void OnPickUp()
     {
@@ -90,6 +90,7 @@ public class Test : MonoBehaviour
     }
     private void UnscriptedItemDrop()
     {
+        Object.transform.GetComponent<Rigidbody>().velocity = transform.GetComponent<Rigidbody>().velocity;
         Object.transform.SetParent(null);
     }
 }

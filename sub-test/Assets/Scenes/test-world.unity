@@ -12506,12 +12506,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3913599314748143567, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4886883668382654691, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
       propertyPath: arms
       value: 
       objectReference: {fileID: 796879666}
+    - target: {fileID: 4886883668382654691, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: timevalue
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6276916223199190168, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
       propertyPath: Meter
       value: 
@@ -14500,20 +14504,28 @@ PrefabInstance:
       value: gunPlaceHolder
       objectReference: {fileID: 0}
     - target: {fileID: 6062281262160140605, guid: 8b065dea4332bd24b83c88651d6e4bfd, type: 3}
+      propertyPath: HoldCords_y
+      value: 0.067
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062281262160140605, guid: 8b065dea4332bd24b83c88651d6e4bfd, type: 3}
+      propertyPath: HoldCords_z
+      value: 0.067
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062281262160140605, guid: 8b065dea4332bd24b83c88651d6e4bfd, type: 3}
       propertyPath: ammunitionDisplay
       value: 
       objectReference: {fileID: 1799828872}
     - target: {fileID: 6359453876917745915, guid: 8b065dea4332bd24b83c88651d6e4bfd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.44
+      value: 3.101
       objectReference: {fileID: 0}
     - target: {fileID: 6359453876917745915, guid: 8b065dea4332bd24b83c88651d6e4bfd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.2538
+      value: 2.2465
       objectReference: {fileID: 0}
     - target: {fileID: 6359453876917745915, guid: 8b065dea4332bd24b83c88651d6e4bfd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.4675
+      value: 1.541
       objectReference: {fileID: 0}
     - target: {fileID: 6359453876917745915, guid: 8b065dea4332bd24b83c88651d6e4bfd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14547,6 +14559,10 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 0.03
       objectReference: {fileID: 0}
+    - target: {fileID: 8601470555694893508, guid: 8b065dea4332bd24b83c88651d6e4bfd, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14563,6 +14579,14 @@ PrefabInstance:
     - target: {fileID: 5911447212837890054, guid: d4a596e94afbfac4dbbad537af253ad8, type: 3}
       propertyPath: m_Name
       value: shotGun_prototype
+      objectReference: {fileID: 0}
+    - target: {fileID: 6212706554425451494, guid: d4a596e94afbfac4dbbad537af253ad8, type: 3}
+      propertyPath: HoldCords_y
+      value: 0.067
+      objectReference: {fileID: 0}
+    - target: {fileID: 6212706554425451494, guid: d4a596e94afbfac4dbbad537af253ad8, type: 3}
+      propertyPath: HoldCords_z
+      value: 0.067
       objectReference: {fileID: 0}
     - target: {fileID: 6212706554425451494, guid: d4a596e94afbfac4dbbad537af253ad8, type: 3}
       propertyPath: ammunitionDisplay
@@ -14622,10 +14646,10 @@ SceneRoots:
   - {fileID: 2059091454}
   - {fileID: 1995653975}
   - {fileID: 6298359753174094832}
-  - {fileID: 3330588494371879257}
   - {fileID: 250108554}
   - {fileID: 915436162}
   - {fileID: 549086026}
+  - {fileID: 3330588494371879257}
   - {fileID: 2134139331}
   - {fileID: 300532834}
   - {fileID: 121249564}
