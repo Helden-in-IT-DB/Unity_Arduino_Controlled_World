@@ -353,4 +353,8 @@ public class Movement : MonoBehaviour
         }
     }
     */
+    private void Onswitch()
+    {
+        movementInput = Vector3.zero;
+    }
 }

@@ -170,6 +170,15 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Switch"",
+                    ""type"": ""Button"",
+                    ""id"": ""ac268732-5627-4cad-b343-7a69a151523a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -469,6 +478,173 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                     ""action"": ""RemoveInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27715989-ecb2-479b-ab89-317edd39ae46"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Switch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""drone"",
+            ""id"": ""b563f8c6-a7df-4483-a73e-81dcf9eb91dd"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""de8f8610-73a1-428c-9d08-68d6d8943c4b"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""UpDown"",
+                    ""type"": ""Value"",
+                    ""id"": ""dce2e9fd-aa41-46d8-b820-9fc5a999dda2"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Return"",
+                    ""type"": ""Button"",
+                    ""id"": ""27550867-b17c-472e-b0aa-c4a1b504996d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""3D Vector"",
+                    ""id"": ""29fc3b35-92c6-46e6-9174-32e4d939aa86"",
+                    ""path"": ""3DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""1c5245fe-bab0-469e-b20c-71d4037eceb0"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""e88c594f-02a2-4295-9ffb-90a9baf446b2"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""28e6eccd-63dd-4fa3-9c23-73f132131ca1"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""815dd5e2-a3a5-49f4-b3a9-2da79ceab023"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""b6b2689f-87b0-42ce-a6d0-1318f216762f"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UpDown"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""9f5efbad-46b1-437a-89d0-33ab8d4243dd"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UpDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""5844bc33-29d4-4526-a9a0-be8e26880a60"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UpDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""d4bc98ea-9542-421c-8fd3-7db2cfa4380f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UpDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""8c0ff8eb-1a19-419c-a124-2394d3a72ec1"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UpDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""92107f2f-d1e2-43b4-82ad-64a69421413f"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Return"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -493,6 +669,12 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
         m_Player_ReleaseSprint = m_Player.FindAction("ReleaseSprint", throwIfNotFound: true);
         m_Player_PutInInventory = m_Player.FindAction("PutInInventory", throwIfNotFound: true);
         m_Player_RemoveInventory = m_Player.FindAction("RemoveInventory", throwIfNotFound: true);
+        m_Player_Switch = m_Player.FindAction("Switch", throwIfNotFound: true);
+        // drone
+        m_drone = asset.FindActionMap("drone", throwIfNotFound: true);
+        m_drone_Move = m_drone.FindAction("Move", throwIfNotFound: true);
+        m_drone_UpDown = m_drone.FindAction("UpDown", throwIfNotFound: true);
+        m_drone_Return = m_drone.FindAction("Return", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -570,6 +752,7 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ReleaseSprint;
     private readonly InputAction m_Player_PutInInventory;
     private readonly InputAction m_Player_RemoveInventory;
+    private readonly InputAction m_Player_Switch;
     public struct PlayerActions
     {
         private @Playercontrols m_Wrapper;
@@ -590,6 +773,7 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
         public InputAction @ReleaseSprint => m_Wrapper.m_Player_ReleaseSprint;
         public InputAction @PutInInventory => m_Wrapper.m_Player_PutInInventory;
         public InputAction @RemoveInventory => m_Wrapper.m_Player_RemoveInventory;
+        public InputAction @Switch => m_Wrapper.m_Player_Switch;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -647,6 +831,9 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
             @RemoveInventory.started += instance.OnRemoveInventory;
             @RemoveInventory.performed += instance.OnRemoveInventory;
             @RemoveInventory.canceled += instance.OnRemoveInventory;
+            @Switch.started += instance.OnSwitch;
+            @Switch.performed += instance.OnSwitch;
+            @Switch.canceled += instance.OnSwitch;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -699,6 +886,9 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
             @RemoveInventory.started -= instance.OnRemoveInventory;
             @RemoveInventory.performed -= instance.OnRemoveInventory;
             @RemoveInventory.canceled -= instance.OnRemoveInventory;
+            @Switch.started -= instance.OnSwitch;
+            @Switch.performed -= instance.OnSwitch;
+            @Switch.canceled -= instance.OnSwitch;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -716,6 +906,68 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // drone
+    private readonly InputActionMap m_drone;
+    private List<IDroneActions> m_DroneActionsCallbackInterfaces = new List<IDroneActions>();
+    private readonly InputAction m_drone_Move;
+    private readonly InputAction m_drone_UpDown;
+    private readonly InputAction m_drone_Return;
+    public struct DroneActions
+    {
+        private @Playercontrols m_Wrapper;
+        public DroneActions(@Playercontrols wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_drone_Move;
+        public InputAction @UpDown => m_Wrapper.m_drone_UpDown;
+        public InputAction @Return => m_Wrapper.m_drone_Return;
+        public InputActionMap Get() { return m_Wrapper.m_drone; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DroneActions set) { return set.Get(); }
+        public void AddCallbacks(IDroneActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DroneActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DroneActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @UpDown.started += instance.OnUpDown;
+            @UpDown.performed += instance.OnUpDown;
+            @UpDown.canceled += instance.OnUpDown;
+            @Return.started += instance.OnReturn;
+            @Return.performed += instance.OnReturn;
+            @Return.canceled += instance.OnReturn;
+        }
+
+        private void UnregisterCallbacks(IDroneActions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @UpDown.started -= instance.OnUpDown;
+            @UpDown.performed -= instance.OnUpDown;
+            @UpDown.canceled -= instance.OnUpDown;
+            @Return.started -= instance.OnReturn;
+            @Return.performed -= instance.OnReturn;
+            @Return.canceled -= instance.OnReturn;
+        }
+
+        public void RemoveCallbacks(IDroneActions instance)
+        {
+            if (m_Wrapper.m_DroneActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IDroneActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DroneActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DroneActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public DroneActions @drone => new DroneActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -734,5 +986,12 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
         void OnReleaseSprint(InputAction.CallbackContext context);
         void OnPutInInventory(InputAction.CallbackContext context);
         void OnRemoveInventory(InputAction.CallbackContext context);
+        void OnSwitch(InputAction.CallbackContext context);
+    }
+    public interface IDroneActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnUpDown(InputAction.CallbackContext context);
+        void OnReturn(InputAction.CallbackContext context);
     }
 }

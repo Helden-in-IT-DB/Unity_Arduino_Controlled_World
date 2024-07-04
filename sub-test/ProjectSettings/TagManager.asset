@@ -8,6 +8,8 @@ TagManager:
   - bullet
   - button
   - EndPoint
+  - gadget
+  - gun
   layers:
   - Default
   - TransparentFX

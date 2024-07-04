@@ -62,7 +62,7 @@ public class BaseGun : MonoBehaviour
         //make sure magazine is full
         bulletsLeft = magazineSize;
         readyToShoot = true;
-        
+        Debug.Log("picked up");
     }
     private void Update()
     {

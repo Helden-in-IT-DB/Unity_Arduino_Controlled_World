@@ -10,6 +10,7 @@ public class Test : MonoBehaviour
     public LayerMask WhatIsItem;
     private GameObject Object;
     [SerializeField] private GameObject arms;
+    [SerializeField] private GameObject gadget;
 
     [Header("inverntory")]
     [SerializeField] private Transform inventory;
@@ -58,7 +59,7 @@ public class Test : MonoBehaviour
             MonoBehaviour[] scripts = Object.GetComponentsInChildren<MonoBehaviour>();
 
             // Check if only one script was found
-            if (scripts.Length >= 1) // Length is 2 because the GameObject itself is also counted
+            if (scripts.Length >= 1 && Object.tag != "gadget") // Length is 2 because the GameObject itself is also counted
             {
                 for (int i = 0; i <= (scripts.Length - 1); i++)
                 {
@@ -104,9 +105,32 @@ public class Test : MonoBehaviour
         {
             item_In_Inventory = Object;
             item_In_Inventory.transform.SetParent(inventory);
-            item_In_Inventory.SetActive(false);
+            
+            // Get all MonoBehaviour components attached to the Object
+            MonoBehaviour[] scripts = item_In_Inventory.GetComponentsInChildren<MonoBehaviour>();
+
+            // Check if only one script was found
+            if (scripts.Length >= 1 && item_In_Inventory.tag == "gadget") // Length is 2 because the GameObject itself is also counted
+            {
+                for (int i = 0; i <= (scripts.Length - 1); i++)
+                {
+                    // Check if the script starts with 'S'
+                    if (scripts[i].GetType().Name.EndsWith("_switch"))
+                    {
+                        // Enable the script
+                        scripts[i].enabled = true;
+                        gadget = item_In_Inventory;
+                    }
+                }
+
+            }
+            Invoke("SetInactive", .2f);
             inventoryFull = true;
         }
+    }
+    private void SetInactive()
+    {
+        item_In_Inventory.SetActive(false);
     }
     private void OnRemoveInventory()
     {

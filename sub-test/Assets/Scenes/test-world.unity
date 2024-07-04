@@ -3421,6 +3421,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun
       objectReference: {fileID: 0}
+    - target: {fileID: 8957844294124199212, guid: 448676d062d7aec42add73e7c1da82ea, type: 3}
+      propertyPath: m_TagString
+      value: gun
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12005,6 +12009,37 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &1729793728 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4242230186203650032, guid: e5f5d621ae7ba3d49bf104528c92bd7b, type: 3}
+  m_PrefabInstance: {fileID: 1630124719941999067}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1729793735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729793728}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34630e80cea0635478170875da2617d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectedPlayer: {fileID: 0}
+--- !u!114 &1729793736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729793728}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0316332b505b8b74baab107d00222d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectedPlayer: {fileID: 0}
 --- !u!43 &1770008253
 Mesh:
   m_ObjectHideFlags: 0
@@ -12573,6 +12608,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 387617512105457083, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2209589585551793542, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4886883668382654691, guid: 415d2b854b74896468765e3cfc5238cc, type: 3}
       propertyPath: inventory
       value: 
@@ -14453,6 +14496,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1664459102610351934, guid: e5f5d621ae7ba3d49bf104528c92bd7b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2632066172915845239, guid: e5f5d621ae7ba3d49bf104528c92bd7b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.18
@@ -14497,10 +14544,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: drone
       objectReference: {fileID: 0}
+    - target: {fileID: 4242230186203650032, guid: e5f5d621ae7ba3d49bf104528c92bd7b, type: 3}
+      propertyPath: m_TagString
+      value: gadget
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4242230186203650032, guid: e5f5d621ae7ba3d49bf104528c92bd7b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1729793736}
+    - targetCorrespondingSourceObject: {fileID: 4242230186203650032, guid: e5f5d621ae7ba3d49bf104528c92bd7b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1729793735}
   m_SourcePrefab: {fileID: 100100000, guid: e5f5d621ae7ba3d49bf104528c92bd7b, type: 3}
 --- !u!1001 &3330588494371879257
 PrefabInstance:
@@ -14513,6 +14570,10 @@ PrefabInstance:
     - target: {fileID: 253631625858280319, guid: 8b065dea4332bd24b83c88651d6e4bfd, type: 3}
       propertyPath: m_Name
       value: gunPlaceHolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 253631625858280319, guid: 8b065dea4332bd24b83c88651d6e4bfd, type: 3}
+      propertyPath: m_TagString
+      value: gun
       objectReference: {fileID: 0}
     - target: {fileID: 6062281262160140605, guid: 8b065dea4332bd24b83c88651d6e4bfd, type: 3}
       propertyPath: HoldCords_y
@@ -14590,6 +14651,10 @@ PrefabInstance:
     - target: {fileID: 5911447212837890054, guid: d4a596e94afbfac4dbbad537af253ad8, type: 3}
       propertyPath: m_Name
       value: shotGun_prototype
+      objectReference: {fileID: 0}
+    - target: {fileID: 5911447212837890054, guid: d4a596e94afbfac4dbbad537af253ad8, type: 3}
+      propertyPath: m_TagString
+      value: gun
       objectReference: {fileID: 0}
     - target: {fileID: 6212706554425451494, guid: d4a596e94afbfac4dbbad537af253ad8, type: 3}
       propertyPath: HoldCords_y
