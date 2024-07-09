@@ -1,16 +1,14 @@
-## Unity_Adruino_Controlled_World
+## Unity_Arduino_Controlled_World
 
-Welcome to my little project I worked on while at helden in IT. this repository includes the unity input system. work on a custom arduino controller and blender work with animation
+Welcome to my little project I worked on while at Helden in IT. This repository includes the Unity Input System, work on a custom Arduino controller, and Blender work with animation.
 
-# for an explenation about how you set up the new Unity input system:
- - go to documentations and select the Unity input system powerpoint
+# For an explanation about how to set up the new Unity Input System:
+ - Go to documentation and select the Unity Input System PowerPoint.
 
-# for an explenation about how you set up an Raspberry-pico controller:
+# For an explanation about how to set up a Raspberry Pi Pico controller:
+ - Go to documentation and select the 'Basic Raspberry Pi Pico Controller Setup' PowerPoint.
 
- - go to documentations and select the 'basic raspberry-pico controller setup.' powerpoint
-
-# to open the unity project:
-
-- 1 open unity hub and go to the projects tab
-- 2 select the 'add' button and search your files until you get the 'Unity' folder in your repository.
-- 3 if unity hub tell you to install a specific version of unity, just install it and wait until it's done.
+# To open the Unity project:
+1. Open Unity Hub and go to the Projects tab.
+2. Select the 'Add' button and search your files until you find the 'Unity' folder in your repository.
+3. If Unity Hub tells you to install a specific version of Unity, just install it and wait until it's done.
