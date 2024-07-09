@@ -1,4 +1,4 @@
-## Unity_Adruino_controlled_world
+## Unity_Adruino_Controlled_World
 
 Welcome to my little project I worked on while at helden in IT. this repository includes the unity input system. work on a custom arduino controller and blender work with animation
 
