@@ -16,10 +16,10 @@ Welcome to my little project I worked on while at Helden in IT. This repository 
 # Links to tutorials I followed for Blender:
 
  - for the basics of modeling in Blender:
-https://www.youtube.com/watch?v=B0J27sf9N1Y&list=PLjEaoINr3zgEPv5y--4MKpciLaoQYZB1Z
+https://www.youtube.com/watch?v=B0J27sf9N1Y&list=PLjEaoINr3zgEPv5y--4MKpciLaoQYZB1Z.
 This is a good tutorial showing how you make a basic model. I recommend going at least until part 8.
 
 
  - for the basics of rigging and animation:
-https://www.youtube.com/watch?v=L2ZqWDUVWoY&list=PLn8ROcXT8fZgjdv4w6FczF8ziXkavUxdu
+https://www.youtube.com/watch?v=L2ZqWDUVWoY&list=PLn8ROcXT8fZgjdv4w6FczF8ziXkavUxdu.
 This is a very solid tutorial that you should watch fully through but be sure to put your own special spin. Also this tutorial provides the files of this course in the link of his videos. Most problems I encountered were usually addressed in the comments.so i suggest youtube comment finder if you get a problem.
